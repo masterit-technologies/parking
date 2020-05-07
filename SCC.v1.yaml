@@ -1,0 +1,895 @@
+openapi: 3.0.0
+info:
+  title: MasterIT SmartCityCenter
+  version: '1.0'
+  description: API pro podporu Smart City Center
+  contact: {}
+  license:
+    name: MasterIT technologies a.s.
+servers:
+  - url: 'https://devproxy.masterit.cz'
+    description: develop
+paths:
+  /api/app/mob/parking/init:
+    get:
+      summary: GetMobParkingInit
+      tags:
+        - parking
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResult'
+              examples:
+                OK:
+                  value:
+                    status: ok
+                    err_msg: ''
+                    err_code: 0
+                    data: []
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResult'
+              examples:
+                Nedostatečné oprávnění:
+                  value:
+                    status: error
+                    err_msg: Nedostatečné oprávnění
+                    err_code: -4000
+                    data: null
+      operationId: get-api-app-mob-parking-init
+      description: Nastaví počáteční stav cache z DB (opravnění admin) pro aplikace parkování
+      security:
+        - Bearer token: []
+      parameters:
+        - schema:
+            type: string
+            default: application/json
+          in: header
+          name: Content-Type
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: cities
+          required: true
+          description: 'Seznam měst k inicializaci, oddělených čárkou'
+  /api/app/mob/parking/locations:
+    get:
+      summary: GetMobParkingLocations
+      tags:
+        - parking
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResult'
+              examples:
+                OK:
+                  value:
+                    status: ok
+                    err_msg: ''
+                    err_code: 0
+                    data:
+                      - sccID: 1
+                        devID: MSK.PRK.LOC01
+                        type: GroupingDevice
+                        deviceName: 'Krajský úřad, Ostrava'
+                        config:
+                          map:
+                            area: null
+                            icon: null
+                            shadow: null
+                            divIcon:
+                              iconUrl: Content/images/ico-parking-24.png
+                            tooltip:
+                              text: ''
+                            position:
+                              lat: 49.829442077493184
+                              lng: 18.270621826061472
+                            streetView: null
+                            visibility:
+                              gui: app
+                              max: 13
+                              min: 11
+                        configParking:
+                          areaID: 1
+                          cityID: 554821
+                          zoneID: -1
+                          isPublic: true
+                          photo_url: ''
+                          locationID: 2
+                          street_view_url: ''
+                        data:
+                          free: 41
+                          total: 175
+                          occupied: 134
+                          unknown: 0
+                        class: ParkingLocation
+      operationId: get-api-app-mob-parking-locations
+      description: Vrací seznam parkovacích lokací pro mobilní aplikaci parkování
+      parameters:
+        - schema:
+            type: string
+            default: application/json
+          in: header
+          name: Content-Type
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: cityID
+          required: true
+          description: id měst oddělených čárkou
+        - schema:
+            type: string
+          in: query
+          name: validSince
+          description: 'unix epoch čas posledních platných dat u klienta, data jsou vrácena pouze v případě, že došlo od té doby ke změně, jinak null'
+        - schema:
+            type: string
+          in: query
+          name: placeTypes
+          description: 'seznam typů parkovacích míst oddělených čárkou (C-běžné, D-ZTP, E-elektro, T-taxi)'
+        - schema:
+            type: string
+          in: query
+          name: locale
+          description: jazyková mutace
+  /api/app/mob/parking/zones:
+    get:
+      summary: GetMobParkingZones
+      tags:
+        - parking
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResult'
+              examples:
+                OK:
+                  value:
+                    status: ok
+                    err_msg: ''
+                    err_code: 0
+                    data:
+                      - sccID: 1
+                        devID: MSK.PRK.ZONEB
+                        type: GroupingDevice
+                        deviceName: 'Krajský úřad, Ostrava Zóna B'
+                        config:
+                          map:
+                            area: null
+                            icon: null
+                            shadow: null
+                            divIcon:
+                              iconUrl: Content/images/ico-parking-24.png
+                            tooltip:
+                              text: ''
+                            position:
+                              lat: 49.829419584894815
+                              lng: 18.269817074947326
+                            streetView: null
+                            visibility:
+                              gui: app
+                              max: 17
+                              min: 14
+                        configParking:
+                          areaID: 1
+                          cityID: 554821
+                          zoneID: 1
+                          photo_url: 'https://smartcity.masterit.cz/scc/Apps/parking/content/images/parking_ostrava_zona_B.jpg'
+                          attributes:
+                            - name: Otevírací doba
+                              items:
+                                - name: po-ne
+                                  value: nonstop
+                                  icon_id: ''
+                            - name: CENA
+                              items:
+                                - name: po-ne
+                                  value: zdarma
+                                  icon_id: ''
+                            - name: Vybavení
+                              items:
+                                - name: Pouliční osvětlení
+                                  value: ''
+                                  icon_id: ico_16_positive
+                                - name: Místo pro invalidy
+                                  value: '2'
+                                  icon_id: ico_16_dis
+                                - name: Bezpečnostní kamera
+                                  value: ''
+                                  icon_id: ico_16_negative
+                                - name: Oplocení
+                                  value: ''
+                                  icon_id: ico_16_negative
+                                - name: Závora
+                                  value: ''
+                                  icon_id: ico_16_negative
+                                - name: Místo pro elektromobily
+                                  value: ''
+                                  icon_id: ico_16_negative
+                          locationID: 2
+                          street_view_url: 'https://www.google.com/maps/@49.8296512,18.2699846,3a,75y,212.49h,93.45t/data=!3m6!1e1!3m4!1sKeKC7VN4Af2nzZzjvMl-oA!2e0!7i13312!8i6656'
+                        data:
+                          free: 6
+                          total: 48
+                          occupied: 42
+                          unknown: 0
+                        class: ParkingZone
+                      - sccID: 1
+                        devID: MSK.PRK.ZONEA
+                        type: GroupingDevice
+                        deviceName: 'Krajský úřad, Ostrava Zóna A'
+                        config:
+                          map:
+                            area: null
+                            icon: null
+                            shadow: null
+                            divIcon:
+                              iconUrl: Content/images/ico-parking-24.png
+                            tooltip:
+                              text: ''
+                            position:
+                              lat: 49.82986510941439
+                              lng: 18.270459474360987
+                            streetView: null
+                            visibility:
+                              gui: app
+                              max: 17
+                              min: 14
+                        configParking:
+                          areaID: 1
+                          cityID: 554821
+                          zoneID: 9
+                          photo_url: 'https://smartcity.masterit.cz/scc/Apps/parking/content/images/parking_ostrava_zona_A.jpg'
+                          attributes:
+                            - name: Otevírací doba
+                              items:
+                                - name: po-ne
+                                  value: nonstop
+                                  icon_id: ''
+                            - name: CENA
+                              items:
+                                - name: po-ne
+                                  value: zdarma
+                                  icon_id: ''
+                            - name: Vybavení
+                              items:
+                                - name: Pouliční osvětlení
+                                  value: ''
+                                  icon_id: ico_16_positive
+                                - name: Místo pro invalidy
+                                  value: '4'
+                                  icon_id: ico_16_dis
+                                - name: Bezpečnostní kamera
+                                  value: ''
+                                  icon_id: ico_16_negative
+                                - name: Oplocení
+                                  value: ''
+                                  icon_id: ico_16_negative
+                                - name: Závora
+                                  value: ''
+                                  icon_id: ico_16_positive
+                                - name: Místo pro elektromobily
+                                  value: '4'
+                                  icon_id: ico_16_positive
+                          locationID: 2
+                          street_view_url: 'https://www.google.com/maps/@49.8300335,18.2704887,3a,75y,177.78h,88.24t/data=!3m6!1e1!3m4!1sGEJEElcLvKEoftr5HByOrQ!2e0!7i13312!8i6656'
+                        data:
+                          free: 21
+                          total: 37
+                          occupied: 16
+                          unknown: 0
+                        class: ParkingZone
+                      - sccID: 1
+                        devID: MSK.PRK.ZONEC
+                        type: GroupingDevice
+                        deviceName: 'Krajský úřad, Ostrava Zóna C'
+                        config:
+                          map:
+                            area: null
+                            icon: null
+                            shadow: null
+                            divIcon:
+                              iconUrl: Content/images/ico-parking-24.png
+                            tooltip:
+                              text: ''
+                            position:
+                              lat: 49.829038074228976
+                              lng: 18.27085643914635
+                            streetView: null
+                            visibility:
+                              gui: app
+                              max: 17
+                              min: 14
+                        configParking:
+                          areaID: 1
+                          cityID: 554821
+                          zoneID: 2
+                          photo_url: 'https://smartcity.masterit.cz/scc/Apps/parking/content/images/parking_ostrava_zona_C.jpg'
+                          attributes:
+                            - name: Otevírací doba
+                              items:
+                                - name: po-ne
+                                  value: nonstop
+                                  icon_id: ''
+                            - name: CENA
+                              items:
+                                - name: po-ne
+                                  value: zdarma
+                                  icon_id: ''
+                            - name: Vybavení
+                              items:
+                                - name: Pouliční osvětlení
+                                  value: ''
+                                  icon_id: ico_16_positive
+                                - name: Místo pro invalidy
+                                  value: '1'
+                                  icon_id: ico_16_dis
+                                - name: Bezpečnostní kamera
+                                  value: ''
+                                  icon_id: ico_16_negative
+                                - name: Oplocení
+                                  value: ''
+                                  icon_id: ico_16_negative
+                                - name: Závora
+                                  value: ''
+                                  icon_id: ico_16_negative
+                                - name: Místo pro elektromobily
+                                  value: ''
+                                  icon_id: ico_16_negative
+                          locationID: 2
+                          street_view_url: 'https://www.google.com/maps/@49.8291884,18.2708804,3a,60y,171.56h,83.52t/data=!3m6!1e1!3m4!1szG90QrDfr8ANk0bY3Xz-0A!2e0!7i13312!8i6656'
+                        data:
+                          free: 1
+                          total: 25
+                          occupied: 24
+                          unknown: 0
+                        class: ParkingZone
+                      - sccID: 1
+                        devID: MSK.PRK.ZONEI
+                        type: GroupingDevice
+                        deviceName: 'Krajský úřad, Ostrava Zóna I'
+                        config:
+                          map:
+                            area: null
+                            icon: null
+                            shadow: null
+                            divIcon:
+                              iconUrl: Content/images/ico-parking-24.png
+                            tooltip:
+                              text: ''
+                            position:
+                              lat: 49.82848872818833
+                              lng: 18.270444846927163
+                            streetView: null
+                            visibility:
+                              gui: app
+                              max: 17
+                              min: 14
+                        configParking:
+                          areaID: 1
+                          cityID: 554821
+                          zoneID: 5
+                          photo_url: 'https://smartcity.masterit.cz/scc/Apps/parking/content/images/parking_ostrava_zona_I.jpg'
+                          attributes:
+                            - name: Otevírací doba
+                              items:
+                                - name: po-ne
+                                  value: nonstop
+                                  icon_id: ''
+                            - name: CENA
+                              items:
+                                - name: po-ne
+                                  value: zdarma
+                                  icon_id: ''
+                            - name: Vybavení
+                              items:
+                                - name: Pouliční osvětlení
+                                  value: ''
+                                  icon_id: ico_16_positive
+                                - name: Místo pro invalidy
+                                  value: '2'
+                                  icon_id: ico_16_dis
+                                - name: Bezpečnostní kamera
+                                  value: ''
+                                  icon_id: ico_16_negative
+                                - name: Oplocení
+                                  value: ''
+                                  icon_id: ico_16_negative
+                                - name: Závora
+                                  value: ''
+                                  icon_id: ico_16_negative
+                                - name: Místo pro elektromobily
+                                  value: ''
+                                  icon_id: ico_16_negative
+                          locationID: 2
+                          street_view_url: 'https://www.google.com/maps/@49.8281807,18.2706712,3a,75y,333.97h,86.71t/data=!3m6!1e1!3m4!1sRy6Xu4JslQ1Pi60pgoNGIA!2e0!7i13312!8i6656'
+                        data:
+                          free: 4
+                          total: 18
+                          occupied: 14
+                          unknown: 0
+                        class: ParkingZone
+                      - sccID: 1
+                        devID: MSK.PRK.ZONEK
+                        type: GroupingDevice
+                        deviceName: 'Krajský úřad, Ostrava Zóna K'
+                        config:
+                          map:
+                            area: null
+                            icon: null
+                            shadow: null
+                            divIcon:
+                              iconUrl: Content/images/ico-parking-24.png
+                            tooltip:
+                              text: ''
+                            position:
+                              lat: 49.82826293217972
+                              lng: 18.271124660354836
+                            streetView: null
+                            visibility:
+                              gui: app
+                              max: 17
+                              min: 14
+                        configParking:
+                          areaID: 1
+                          cityID: 554821
+                          zoneID: 6
+                          photo_url: 'https://smartcity.masterit.cz/scc/Apps/parking/content/images/parking_ostrava_zona_K.jpg'
+                          attributes:
+                            - name: Otevírací doba
+                              items:
+                                - name: po-ne
+                                  value: nonstop
+                                  icon_id: ''
+                            - name: CENA
+                              items:
+                                - name: po-ne
+                                  value: zdarma
+                                  icon_id: ''
+                            - name: Vybavení
+                              items:
+                                - name: Pouliční osvětlení
+                                  value: ''
+                                  icon_id: ico_16_positive
+                                - name: Místo pro invalidy
+                                  value: '2'
+                                  icon_id: ico_16_dis
+                                - name: Bezpečnostní kamera
+                                  value: ''
+                                  icon_id: ico_16_negative
+                                - name: Oplocení
+                                  value: ''
+                                  icon_id: ico_16_negative
+                                - name: Závora
+                                  value: ''
+                                  icon_id: ico_16_negative
+                                - name: Místo pro elektromobily
+                                  value: ''
+                                  icon_id: ico_16_negative
+                          locationID: 2
+                          street_view_url: 'https://www.google.com/maps/@49.8283057,18.2710541,3a,75y,211.56h,77.36t/data=!3m6!1e1!3m4!1sIcg9qizCHd6p1PgRPCTxeg!2e0!7i13312!8i6656'
+                        data:
+                          free: 6
+                          total: 23
+                          occupied: 17
+                          unknown: 0
+                        class: ParkingZone
+                      - sccID: 1
+                        devID: MSK.PRK.ZONEL
+                        type: GroupingDevice
+                        deviceName: 'Na Jízdárně 2, Ostrava'
+                        config:
+                          map:
+                            area: null
+                            icon: null
+                            shadow: null
+                            divIcon:
+                              iconUrl: Content/images/ico-parking-24.png
+                            tooltip:
+                              text: ''
+                            position:
+                              lat: 49.82950869012703
+                              lng: 18.272044661116727
+                            streetView: null
+                            visibility:
+                              gui: app
+                              max: 17
+                              min: 14
+                        configParking:
+                          areaID: 1
+                          cityID: 554821
+                          zoneID: 7
+                          isPublic: true
+                          photo_url: 'https://smartcity.masterit.cz/scc/Apps/parking/content/images/parking_ostrava_zona_L.jpg'
+                          attributes:
+                            - name: Otevírací doba
+                              items:
+                                - name: po-ne
+                                  value: nonstop
+                                  icon_id: ''
+                            - name: CENA
+                              items:
+                                - name: po-ne
+                                  value: zdarma
+                                  icon_id: ''
+                            - name: Vybavení
+                              items:
+                                - name: Pouliční osvětlení
+                                  value: ''
+                                  icon_id: ico_16_positive
+                                - name: Místo pro invalidy
+                                  value: ''
+                                  icon_id: ico_16_negative
+                                - name: Bezpečnostní kamera
+                                  value: ''
+                                  icon_id: ico_16_negative
+                                - name: Oplocení
+                                  value: ''
+                                  icon_id: ico_16_negative
+                                - name: Závora
+                                  value: ''
+                                  icon_id: ico_16_negative
+                                - name: Místo pro elektromobily
+                                  value: ''
+                                  icon_id: ico_16_negative
+                          locationID: 2
+                          street_view_url: 'https://www.google.com/maps/@49.8296231,18.2718531,3a,75y,184.69h,80.97t/data=!3m6!1e1!3m4!1sytL5umu-APtuqBb1tWFUFA!2e0!7i13312!8i6656'
+                        data:
+                          free: 1
+                          total: 24
+                          occupied: 23
+                          unknown: 0
+                        class: ParkingZone
+      operationId: get-api-app-mob-parking-zones
+      description: Vrací seznam parkovacích zón pro mobilní aplikaci parkování
+      parameters:
+        - schema:
+            type: string
+            default: application/json
+          in: header
+          name: Content-Type
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: cityID
+          required: true
+          description: id měst oddělených čárkou
+        - schema:
+            type: string
+          in: query
+          name: validSince
+          description: 'unix epoch čas posledních platných dat u klienta, data jsou vrácena pouze v případě, že došlo od té doby ke změně, jinak null'
+        - schema:
+            type: string
+          in: query
+          name: placeTypes
+          description: 'seznam typů parkovacích míst oddělených čárkou (C-běžné, D-ZTP, E-elektro, T-taxi)'
+        - schema:
+            type: string
+          in: query
+          name: locale
+          description: jazyková mutace
+  /api/app/mob/parking/places:
+    get:
+      summary: GetMobParkingPlaces
+      tags:
+        - parking
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResult'
+              examples:
+                OK:
+                  value:
+                    status: ok
+                    err_msg: ''
+                    err_code: 0
+                    data:
+                      - sccID: 1
+                        devID: MSK.PRK.PLACE138
+                        type: OfflineDevice
+                        deviceName: 'Krajský úřad, Ostrava Zóna I, místo 12'
+                        config:
+                          map:
+                            position:
+                              lat: 49.8282862904364
+                              lng: 18.2705050706863
+                            visibility:
+                              min: 18
+                              max: null
+                        configParking:
+                          areaID: 1
+                          cityID: 554821
+                          zoneID: 5
+                          placeType: '0'
+                          locationID: 2
+                          parkingLotID: cz-ostparkingam-parki
+                          parkingPlaceID: cz-ostparkingam-parki-p13
+                          parkingPlaceType: AND
+                        data:
+                          state: 1
+                          placeType: '0'
+                          timestamp: '2020-05-07T07:44:52'
+                        class: ParkingPlace
+                      - sccID: 1
+                        devID: MSK.PRK.PLACE062
+                        type: OfflineDevice
+                        deviceName: 'Krajský úřad, Ostrava Zóna B, místo 25'
+                        config:
+                          map:
+                            position:
+                              lat: 49.8293707067123
+                              lng: 18.2698747515678
+                            visibility:
+                              min: 18
+                              max: null
+                        configParking:
+                          areaID: 1
+                          cityID: 554821
+                          zoneID: 1
+                          placeType: '0'
+                          locationID: 2
+                          parkingLotID: cz-ostparkingam-parkb
+                          parkingPlaceID: cz-ostparkingam-parkb-p25
+                          parkingPlaceType: AND
+                        data:
+                          state: 1
+                          placeType: '0'
+                          timestamp: '2020-05-07T06:16:01'
+                        class: ParkingPlace
+                      - {}
+                      - {}
+      operationId: get-api-app-mob-parking-places
+      description: Vrací seznam parkovacích míst města podle cityID
+      parameters:
+        - schema:
+            type: string
+            default: application/json
+          in: header
+          name: Content-Type
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: cityID
+          required: true
+          description: id měst oddělených čárkou
+        - schema:
+            type: string
+          in: query
+          name: validSince
+          description: 'unix epoch čas posledních platných dat u klienta, data jsou vrácena pouze v případě, že došlo od té doby ke změně, jinak null'
+        - schema:
+            type: string
+          in: query
+          name: placeTypes
+          description: 'seznam typů parkovacích míst oddělených čárkou (C-běžné, D-ZTP, E-elektro, T-taxi)'
+  /api/app/mob/parking/city:
+    get:
+      summary: GetMobParkingCity
+      tags:
+        - parking
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResult'
+              examples:
+                OK:
+                  value:
+                    status: ok
+                    err_msg: ''
+                    err_code: 0
+                    data:
+                      id: CZE554821
+                      zip: '70200'
+                      data: {}
+                      name: Ostrava
+                      note: ''
+                      recID: 22826
+                      sccID: 1
+                      config:
+                        map:
+                          click: null
+                          center:
+                            lat: 49.821023
+                            lng: 18.262624
+                          divIcon:
+                            iconUrl: Content/images/ico-city-24.png
+                          tooltip: null
+                          position:
+                            lat: 49.821023
+                            lng: 18.262624
+                          visibility: null
+                        url: ''
+                        wiki: ''
+                        emblem: null
+                        appList:
+                          - parking
+                      region: 80
+                      changed: '2018-09-24T13:45:09'
+                      country: CZE
+                      created: '2018-09-24T13:45:09'
+                      disabled: false
+                      district: 806
+                      changedBy: -1
+                      createdBy: -1
+                      description: ''
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResult'
+              examples:
+                Město nenalezeno:
+                  value:
+                    status: error
+                    err_msg: Město nebylo nalezeno
+                    err_code: -10
+                    data: null
+      operationId: get-api-app-mob-parking-city
+      description: Metoda vrátí město podle cityID
+      parameters:
+        - schema:
+            type: string
+            default: application/json
+          in: header
+          name: Content-Type
+          required: true
+          description: ''
+        - schema:
+            type: string
+          in: query
+          required: true
+          name: cityID
+          description: ID města
+  /api/app/mob/parking/city/about:
+    get:
+      summary: GetMobParkingCityAbout
+      tags:
+        - parking
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResult'
+              examples:
+                OK:
+                  value:
+                    status: ok
+                    err_msg: ''
+                    err_code: 0
+                    data:
+                      url: 'https://www.ostrava.cz/cs'
+                      html: ''
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResult'
+              examples:
+                Město nenalezeno:
+                  value:
+                    status: error
+                    err_msg: Město nebylo nalezeno
+                    err_code: -10
+                    data: null
+      operationId: get-api-app-mob-parking-city-about
+      description: Metoda vrátí popisnou informaci o zadaném cityID
+      parameters:
+        - schema:
+            type: string
+            default: application/json
+          in: header
+          name: Content-Type
+          required: true
+          description: ''
+        - schema:
+            type: string
+          in: query
+          required: true
+          name: cityID
+          description: ID města
+  /api/app/mob/parking/address:
+    get:
+      summary: GetMobParkingAddress
+      tags:
+        - parking
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResult'
+              examples:
+                OK:
+                  value:
+                    status: ok
+                    err_msg: ''
+                    err_code: 0
+                    data:
+                      - street: Krajský úřad
+                        city: Ostrava
+                        position:
+                          lat: 49.82986510941439
+                          lng: 18.270459474360987
+      operationId: get-api-app-mob-parking-address
+      description: Metoda vrátí seznam parkovišť v systému podle zadaného cityID
+      parameters:
+        - schema:
+            type: string
+            default: application/json
+          in: header
+          name: Content-Type
+          required: true
+          description: ''
+        - schema:
+            type: string
+          in: query
+          required: true
+          name: cityID
+          description: ID města
+        - schema:
+            type: string
+          in: query
+          name: fullText
+          required: true
+          description: Slouží k vyhledání výskytu v adrese
+components:
+  schemas:
+    APIResult:
+      title: APIResult
+      type: object
+      properties:
+        status:
+          type: string
+        err_msg:
+          type: string
+        err_code:
+          type: integer
+        data:
+          type:
+            - 'null'
+            - object
+      x-examples:
+        OK:
+          status: ok
+          err_msg: ''
+          err_code: 0
+          data: null
+        ERROR:
+          status: error
+          err_msg: Nedostatečné oprávnění
+          err_code: -4000
+          data: null
+  securitySchemes:
+    Bearer token:
+      type: http
+      scheme: bearer
+tags:
+  - name: parking
+  - name: myIoT
