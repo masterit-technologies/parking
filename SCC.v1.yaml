@@ -892,4 +892,3 @@ components:
       scheme: bearer
 tags:
   - name: parking
-  - name: myIoT
