@@ -1,148 +1,15 @@
 openapi: 3.0.0
 info:
-  title: MasterIT SmartCityCenter
+  title: MasterIT Parkování v Pardubicích
   version: '1.0'
-  description: API pro podporu Smart City Center
+  description: API pro podporu parkovací aplikace
   contact: {}
   license:
     name: MasterIT technologies a.s.
 servers:
-  - url: 'https://devproxy.masterit.cz'
-    description: develop
+  - url: 'https://parking.masterit.cz'
+    description: parking
 paths:
-  /api/app/mob/parking/init:
-    get:
-      summary: GetMobParkingInit
-      tags:
-        - parking
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIResult'
-              examples:
-                OK:
-                  value:
-                    status: ok
-                    err_msg: ''
-                    err_code: 0
-                    data: []
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIResult'
-              examples:
-                Nedostatečné oprávnění:
-                  value:
-                    status: error
-                    err_msg: Nedostatečné oprávnění
-                    err_code: -4000
-                    data: null
-      operationId: get-api-app-mob-parking-init
-      description: Nastaví počáteční stav cache z DB (opravnění admin) pro aplikace parkování
-      security:
-        - Bearer token: []
-      parameters:
-        - schema:
-            type: string
-            default: application/json
-          in: header
-          name: Content-Type
-          required: true
-        - schema:
-            type: string
-          in: query
-          name: cities
-          required: true
-          description: 'Seznam měst k inicializaci, oddělených čárkou'
-  /api/app/mob/parking/locations:
-    get:
-      summary: GetMobParkingLocations
-      tags:
-        - parking
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIResult'
-              examples:
-                OK:
-                  value:
-                    status: ok
-                    err_msg: ''
-                    err_code: 0
-                    data:
-                      - sccID: 1
-                        devID: MSK.PRK.LOC01
-                        type: GroupingDevice
-                        deviceName: 'Krajský úřad, Ostrava'
-                        config:
-                          map:
-                            area: null
-                            icon: null
-                            shadow: null
-                            divIcon:
-                              iconUrl: Content/images/ico-parking-24.png
-                            tooltip:
-                              text: ''
-                            position:
-                              lat: 49.829442077493184
-                              lng: 18.270621826061472
-                            streetView: null
-                            visibility:
-                              gui: app
-                              max: 13
-                              min: 11
-                        configParking:
-                          areaID: 1
-                          cityID: 554821
-                          zoneID: -1
-                          isPublic: true
-                          photo_url: ''
-                          locationID: 2
-                          street_view_url: ''
-                        data:
-                          free: 41
-                          total: 175
-                          occupied: 134
-                          unknown: 0
-                        class: ParkingLocation
-      operationId: get-api-app-mob-parking-locations
-      description: Vrací seznam parkovacích lokací pro mobilní aplikaci parkování
-      parameters:
-        - schema:
-            type: string
-            default: application/json
-          in: header
-          name: Content-Type
-          required: true
-        - schema:
-            type: string
-          in: query
-          name: cityID
-          required: true
-          description: id měst oddělených čárkou
-        - schema:
-            type: string
-          in: query
-          name: validSince
-          description: 'unix epoch čas posledních platných dat u klienta, data jsou vrácena pouze v případě, že došlo od té doby ke změně, jinak null'
-        - schema:
-            type: string
-          in: query
-          name: placeTypes
-          description: 'seznam typů parkovacích míst oddělených čárkou (C-běžné, D-ZTP, E-elektro, T-taxi)'
-        - schema:
-            type: string
-          in: query
-          name: locale
-          description: jazyková mutace
   /api/app/mob/parking/zones:
     get:
       summary: GetMobParkingZones
@@ -566,7 +433,6 @@ paths:
             type: string
           in: query
           name: cityID
-          required: true
           description: id měst oddělených čárkou
         - schema:
             type: string
@@ -577,15 +443,27 @@ paths:
             type: string
           in: query
           name: placeTypes
-          description: 'seznam typů parkovacích míst oddělených čárkou (C-běžné, D-ZTP, E-elektro, T-taxi)'
+          description: seznam typů parkovacích míst oddělených čárkou
         - schema:
             type: string
           in: query
           name: locale
           description: jazyková mutace
-  /api/app/mob/parking/places:
+        - schema:
+            type: string
+          in: query
+          name: vehicleTypes
+          description: seznam typů vozidel oddělených čárkou
+        - schema:
+            type: string
+          in: query
+          name: engineTypes
+          description: seznam motorizací oddělených čárkou
+      security:
+        - Bearer token: []
+  /api/app/mob/parking/place/list:
     get:
-      summary: GetMobParkingPlaces
+      summary: GetMobParkingPlacesAuth
       tags:
         - parking
       responses:
@@ -669,7 +547,6 @@ paths:
             type: string
           in: query
           name: cityID
-          required: true
           description: id měst oddělených čárkou
         - schema:
             type: string
@@ -680,185 +557,20 @@ paths:
             type: string
           in: query
           name: placeTypes
-          description: 'seznam typů parkovacích míst oddělených čárkou (C-běžné, D-ZTP, E-elektro, T-taxi)'
-  /api/app/mob/parking/city:
-    get:
-      summary: GetMobParkingCity
-      tags:
-        - parking
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIResult'
-              examples:
-                OK:
-                  value:
-                    status: ok
-                    err_msg: ''
-                    err_code: 0
-                    data:
-                      id: CZE554821
-                      zip: '70200'
-                      data: {}
-                      name: Ostrava
-                      note: ''
-                      recID: 22826
-                      sccID: 1
-                      config:
-                        map:
-                          click: null
-                          center:
-                            lat: 49.821023
-                            lng: 18.262624
-                          divIcon:
-                            iconUrl: Content/images/ico-city-24.png
-                          tooltip: null
-                          position:
-                            lat: 49.821023
-                            lng: 18.262624
-                          visibility: null
-                        url: ''
-                        wiki: ''
-                        emblem: null
-                        appList:
-                          - parking
-                      region: 80
-                      changed: '2018-09-24T13:45:09'
-                      country: CZE
-                      created: '2018-09-24T13:45:09'
-                      disabled: false
-                      district: 806
-                      changedBy: -1
-                      createdBy: -1
-                      description: ''
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIResult'
-              examples:
-                Město nenalezeno:
-                  value:
-                    status: error
-                    err_msg: Město nebylo nalezeno
-                    err_code: -10
-                    data: null
-      operationId: get-api-app-mob-parking-city
-      description: Metoda vrátí město podle cityID
-      parameters:
-        - schema:
-            type: string
-            default: application/json
-          in: header
-          name: Content-Type
-          required: true
-          description: ''
+          description: seznam typů parkovacích míst oddělených čárkou
         - schema:
             type: string
           in: query
-          required: true
-          name: cityID
-          description: ID města
-  /api/app/mob/parking/city/about:
-    get:
-      summary: GetMobParkingCityAbout
-      tags:
-        - parking
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIResult'
-              examples:
-                OK:
-                  value:
-                    status: ok
-                    err_msg: ''
-                    err_code: 0
-                    data:
-                      url: 'https://www.ostrava.cz/cs'
-                      html: ''
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIResult'
-              examples:
-                Město nenalezeno:
-                  value:
-                    status: error
-                    err_msg: Město nebylo nalezeno
-                    err_code: -10
-                    data: null
-      operationId: get-api-app-mob-parking-city-about
-      description: Metoda vrátí popisnou informaci o zadaném cityID
-      parameters:
-        - schema:
-            type: string
-            default: application/json
-          in: header
-          name: Content-Type
-          required: true
-          description: ''
+          name: vehicleTypes
+          description: seznam typů vozidel oddělených čárkou
         - schema:
             type: string
           in: query
-          required: true
-          name: cityID
-          description: ID města
-  /api/app/mob/parking/address:
-    get:
-      summary: GetMobParkingAddress
-      tags:
-        - parking
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIResult'
-              examples:
-                OK:
-                  value:
-                    status: ok
-                    err_msg: ''
-                    err_code: 0
-                    data:
-                      - street: Krajský úřad
-                        city: Ostrava
-                        position:
-                          lat: 49.82986510941439
-                          lng: 18.270459474360987
-      operationId: get-api-app-mob-parking-address
-      description: Metoda vrátí seznam parkovišť v systému podle zadaného cityID
-      parameters:
-        - schema:
-            type: string
-            default: application/json
-          in: header
-          name: Content-Type
-          required: true
-          description: ''
-        - schema:
-            type: string
-          in: query
-          required: true
-          name: cityID
-          description: ID města
-        - schema:
-            type: string
-          in: query
-          name: fullText
-          required: true
-          description: Slouží k vyhledání výskytu v adrese
+          name: engineTypes
+          description: seznam motorizací oddělených čárkou
+      security:
+        - Bearer token: []
+    parameters: []
 components:
   schemas:
     APIResult:
