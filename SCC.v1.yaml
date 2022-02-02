@@ -461,6 +461,71 @@ paths:
           description: seznam motorizací oddělených čárkou
       security:
         - Bearer token: []
+  /api/anonymousLogin:
+    post:
+      summary: PostAnonymousLogin
+      operationId: post-api-anonymousLogin
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                úspěšné přihlášení/registrace:
+                  value:
+                    status: ok
+                    err_msg: ''
+                    err_code: 0
+                    data:
+                      access_token: access token
+                      token_type: bearer
+                      expires_in: 604799
+                      user:
+                        recID: 16
+                        sccID: 1
+                        userApp: parking
+                        installationID: sa854dsa4d5sa4875d4sa54d
+                      refresh_token: nový refresh token
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResult'
+              examples:
+                Chybný refresh token:
+                  value:
+                    status: error
+                    err_msg: Uživatelské heslo není správné
+                    err_code: -3002
+                    data: null
+      description: API provede přihlášení anonymního uživatele
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Content-Type
+          description: application/json
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+            examples:
+              1. přihlášení:
+                value:
+                  installationID: sa854dsa4d5sa4875d4sa54d
+                  application: parking
+              Přihlášení refreshTokenem:
+                value:
+                  installationID: sa854dsa4d5sa4875d4sa54d
+                  application: parking
+                  refreshToken: a437f6e7-d643-4aa2-b87e-8f1a384773374254d7b2-a08d-4ff7-9391-4c59d945e734f47f34d7-61a1-4417-b383-374b45999fd64884c5aa-eb00-414e-a55b-54243f66e21d
+        description: ''
+    parameters: []
   /api/app/mob/parking/place/list:
     get:
       summary: GetMobParkingPlacesAuth
