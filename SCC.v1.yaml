@@ -989,7 +989,7 @@ paths:
       security:
         - Bearer token: []
     parameters: []
-  /api/app/parking/config:
+  /api/app/mob/parking/config:
     get:
       summary: GetParkingAnonymousConfig
       tags:
@@ -1334,7 +1334,7 @@ paths:
                         - itemID: prohibited
                           name: Zákaz stání
                           icon: null
-      operationId: get-api-app-parking-config
+      operationId: get-api-app-mob-parking-config
       description: Vrací inicializační statická data pro mobilní aplikaci
       parameters:
         - schema:
@@ -1343,6 +1343,141 @@ paths:
           in: header
           name: Content-Type
           required: true
+      security:
+        - Bearer token: []
+    parameters: []
+  /api/app/mob/parking/address:
+    get:
+      summary: GetMobParkingAddress
+      tags:
+        - parking
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResult'
+              examples:
+                OK:
+                  value:
+                    status: ok
+                    err_msg: ''
+                    err_code: 0
+                    data:
+                      parkings:
+                        - name: Karlovina
+                          id: PRD.PRK.LOK-OUT-K
+                          position:
+                            lat: 50.03618385337515
+                            lng: 15.77908694989694
+                        - name: Vnitroblok Karlovina
+                          id: PRD.PRK.LOK-LIII-89
+                          position:
+                            lat: 50.03572458461538
+                            lng: 15.778322415384617
+                      addresses:
+                        - name: Karla IV. 13
+                          id: '7691041'
+                          position:
+                            lat: 50.03738192741215
+                            lng: 15.779751139075094
+                        - name: Karla IV. 2590
+                          id: '7714564'
+                          position:
+                            lat: 50.036088072466
+                            lng: 15.778411065807171
+                        - name: Karla IV. 2591
+                          id: '7714572'
+                          position:
+                            lat: 50.03579865236025
+                            lng: 15.779434073152029
+                        - name: Karla IV. 2592
+                          id: '7714581'
+                          position:
+                            lat: 50.03506689422654
+                            lng: 15.779289487171715
+                        - name: Karla IV. 2594
+                          id: '7714602'
+                          position:
+                            lat: 50.03443276326449
+                            lng: 15.77873955163683
+        '':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResult'
+              examples:
+                OK:
+                  value:
+                    status: ok
+                    err_msg: ''
+                    err_code: 0
+                    data:
+                      parkings:
+                        - name: Karlovina
+                          id: PRD.PRK.LOK-OUT-K
+                          position:
+                            lat: 50.03618385337515
+                            lng: 15.77908694989694
+                          desc: ''
+                        - name: Vnitroblok Karlovina
+                          id: PRD.PRK.LOK-LIII-89
+                          position:
+                            lat: 50.03572458461538
+                            lng: 15.778322415384617
+                          desc: ''
+                      addresses:
+                        - name: Karla IV. 13
+                          id: '7691041'
+                          position:
+                            lat: 50.03738192741215
+                            lng: 15.779751139075094
+                          desc: 'Zelené Předměstí, Pardubice'
+                        - name: Karla IV. 2590
+                          id: '7714564'
+                          position:
+                            lat: 50.036088072466
+                            lng: 15.778411065807171
+                          desc: 'Zelené Předměstí, Pardubice'
+                        - name: Karla IV. 2591
+                          id: '7714572'
+                          position:
+                            lat: 50.03579865236025
+                            lng: 15.779434073152029
+                          desc: 'Zelené Předměstí, Pardubice'
+                        - name: Karla IV. 2592
+                          id: '7714581'
+                          position:
+                            lat: 50.03506689422654
+                            lng: 15.779289487171715
+                          desc: 'Zelené Předměstí, Pardubice'
+                        - name: Karla IV. 2594
+                          id: '7714602'
+                          position:
+                            lat: 50.03443276326449
+                            lng: 15.77873955163683
+                          desc: 'Zelené Předměstí, Pardubice'
+      operationId: get-api-app-mob-parking-address
+      description: Dohledává adresy a parkoviště
+      parameters:
+        - schema:
+            type: string
+            default: application/json
+          in: header
+          name: Content-Type
+          required: true
+        - schema:
+            type: string
+            minLength: 3
+          in: query
+          name: name
+          description: hledaný název
+        - schema:
+            type: integer
+          in: query
+          name: limit
+          description: max. počet vrácených adres
       security:
         - Bearer token: []
     parameters: []
