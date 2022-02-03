@@ -17,7 +17,16 @@ paths:
         - parking
       responses:
         '200':
-          description: OK
+          description: |-
+            Ceník parkovací zóny - config->priceList
+            Systemové ID zóny zoneID, toto ID bude použito při platbách
+
+            priceList:
+            header - obsahuje hlavičku ceníku, id hodnoty a název
+            data - představují řádky v ceníku, významově podle hlavičky
+            freeTime - čas zdarma, vozidlo zaparkuje a ma freeTime [min] na zaplacení
+            divisibility - dělitelnost ceny - určuje nejkratší dobu na kterou lze koupit parkovací lístek v [min], aplikace by umožní zvolit časový rozsah pro nákup lístku na základě této dělitelnosti. Např. je-li 30 minut tak aplikace umožní zadávat délku parkování po 30 minutách apod.
+            days - dny v týdnu (po - 0, ... ne - 6), které ceník pokrývá
           content:
             application/json:
               schema:
