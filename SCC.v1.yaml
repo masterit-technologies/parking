@@ -762,6 +762,8 @@ paths:
           timeMinutes - čas pro který kupuje uživatel lístek v minutách
           oneClick - uživatel má zapamatovanou kartu a provádí nákup oneClickem 
           storeCard - uživatel chce uložit platební kartu pro oneClick
+      tags:
+        - parking
     parameters: []
   /api/app/mob/parking/place/list:
     get:
