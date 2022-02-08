@@ -18,15 +18,14 @@ paths:
       responses:
         '200':
           description: |-
-            Ceník parkovací zóny - config->priceList
-            Systemové ID zóny zoneID, toto ID bude použito při platbách
-
-            priceList:
-            header - obsahuje hlavičku ceníku, id hodnoty a název
-            data - představují řádky v ceníku, významově podle hlavičky
-            freeTime - čas zdarma, vozidlo zaparkuje a ma freeTime [min] na zaplacení
-            divisibility - dělitelnost ceny - určuje nejkratší dobu na kterou lze koupit parkovací lístek v [min], aplikace by umožní zvolit časový rozsah pro nákup lístku na základě této dělitelnosti. Např. je-li 30 minut tak aplikace umožní zadávat délku parkování po 30 minutách apod.
-            days - dny v týdnu (po - 0, ... ne - 6), které ceník pokrývá
+            zoneID - ID parkoviste pouzivane pri nakupech a pri volani detailu parkoviste (parking/prices)
+            ticketID - ID ceníku
+            priceList: - ceník
+            header - popisuje hlavičku tabulky
+            data - radky tabulky propojene pres klic s id polozky v header
+            freeTime - cas parkovani zdarma
+            divisibility - delitelnost parkovaci periody (nejkratsi cas pro placene zaparkovani)
+            days - pole dnu (0-po 6-ne) kdy plati cenik
           content:
             application/json:
               schema:
@@ -44,11 +43,11 @@ paths:
                           lat: 50.0387059640663
                           lng: 15.7796770334244
                         data:
-                          free: 18
-                          paid: 6
+                          free: 10
+                          paid: 9
                           total: 30
                           unknown: 0
-                          occupied: 12
+                          occupied: 20
                           reserved: 0
                           reservedFree: 0
                           reservedUnknown: 0
@@ -98,11 +97,11 @@ paths:
                           lat: 50.0418307767515
                           lng: 15.7813775539398
                         data:
-                          free: 31
-                          paid: 9
+                          free: 24
+                          paid: 15
                           total: 46
                           unknown: 1
-                          occupied: 14
+                          occupied: 21
                           reserved: 0
                           reservedFree: 0
                           reservedUnknown: 0
@@ -159,11 +158,11 @@ paths:
                           lat: 50.0370762161796
                           lng: 15.7662498950958
                         data:
-                          free: 4
-                          paid: 4
+                          free: 3
+                          paid: 10
                           total: 35
                           unknown: 0
-                          occupied: 31
+                          occupied: 32
                           reserved: 0
                           reservedFree: 0
                           reservedUnknown: 0
@@ -212,326 +211,6 @@ paths:
                         deviceClass: ParkingZone
                         zoneID: liv
                         ticketID: automat-10
-                      - devID: PRD.PRK.LOK-LIV-33
-                        deviceName: nábřeží Závodu míru VI.
-                        position:
-                          lat: 50.0370383592907
-                          lng: 15.7563310861588
-                        data:
-                          free: 0
-                          total: 0
-                          unknown: 0
-                          occupied: 0
-                          reserved: 0
-                          reservedFree: 0
-                          reservedUnknown: 0
-                          reservedOccupied: 0
-                        config:
-                          areaID: 3
-                          cityID: CZE555134
-                          zoneID: 31
-                          isPublic: true
-                          photo_url: ''
-                          locationID: 35
-                          zoneNumber: LIV/33
-                          street_view_url: ''
-                          priceList:
-                            - header:
-                                - id: day
-                                  label: Den
-                                - id: time
-                                  label: Čas
-                                - id: minPrice
-                                  label: Minimální cena
-                                - id: firstPeriod
-                                  label: První hodina
-                                - id: nextPeriod
-                                  label: Další hodina
-                              data:
-                                - day: po - pá
-                                  time: '06:00 - 22:00'
-                                  minPrice: 10
-                                  firstPeriod: 20
-                                  nextPeriod: 40
-                                - day: so
-                                  time: '07:00 - 12:00'
-                                  minPrice: 10
-                                  firstPeriod: 20
-                                  nextPeriod: 40
-                              freeTime: 5
-                              divisibility: 30
-                              days:
-                                - 0
-                                - 1
-                                - 2
-                                - 3
-                                - 4
-                                - 5
-                        deviceClass: ParkingZone
-                        zoneID: liv
-                        ticketID: automat-10
-                      - devID: PRD.PRK.LOK-LII-60
-                        deviceName: Na Třísle
-                        position:
-                          lat: 50.039534521739135
-                          lng: 15.780782
-                        data:
-                          free: 2
-                          paid: 3
-                          total: 23
-                          unknown: 0
-                          occupied: 21
-                          reserved: 1
-                          reservedFree: 0
-                          reservedUnknown: 0
-                          reservedOccupied: 1
-                        config:
-                          areaID: 1
-                          cityID: CZE555134
-                          zoneID: 58
-                          isPublic: true
-                          photo_url: ''
-                          locationID: 17
-                          zoneNumber: LII/60
-                          street_view_url: ''
-                          priceList:
-                            - header:
-                                - id: day
-                                  label: Den
-                                - id: time
-                                  label: Čas
-                                - id: minPrice
-                                  label: Minimální cena
-                                - id: firstPeriod
-                                  label: První hodina
-                                - id: nextPeriod
-                                  label: Další hodina
-                              data:
-                                - day: po - pá
-                                  time: '06:00 - 22:00'
-                                  minPrice: 15
-                                  firstPeriod: 30
-                                  nextPeriod: 40
-                                - day: so
-                                  time: '07:00 - 12:00'
-                                  minPrice: 15
-                                  firstPeriod: 30
-                                  nextPeriod: 40
-                              freeTime: 5
-                              divisibility: 30
-                              days:
-                                - 0
-                                - 1
-                                - 2
-                                - 3
-                                - 4
-                                - 5
-                        deviceClass: ParkingZone
-                        zoneID: lii
-                        ticketID: automat-8
-                      - devID: PRD.PRK.LOK-LI-6-11
-                        deviceName: Tyršovo nábřeží II.
-                        position:
-                          lat: 50.0359941679685
-                          lng: 15.782675743103
-                        data:
-                          free: 4
-                          paid: 10
-                          total: 26
-                          unknown: 0
-                          occupied: 22
-                          reserved: 0
-                          reservedFree: 0
-                          reservedUnknown: 0
-                          reservedOccupied: 0
-                        config:
-                          areaID: 2
-                          cityID: CZE555134
-                          zoneID: 10
-                          isPublic: true
-                          photo_url: ''
-                          locationID: 8
-                          zoneNumber: LI/6/11
-                          showViolation: true
-                          maxParkingTime: ''
-                          street_view_url: ''
-                          priceList:
-                            - header:
-                                - id: day
-                                  label: Den
-                                - id: time
-                                  label: Čas
-                                - id: minPrice
-                                  label: Minimální cena
-                                - id: firstPeriod
-                                  label: První hodina
-                                - id: nextPeriod
-                                  label: Další hodina
-                              data:
-                                - day: po - pá
-                                  time: '07:00 - 18:00'
-                                  minPrice: 10
-                                  firstPeriod: 20
-                                  nextPeriod: 40
-                                - day: so
-                                  time: '07:00 - 12:00'
-                                  minPrice: 10
-                                  firstPeriod: 20
-                                  nextPeriod: 40
-                              freeTime: 5
-                              divisibility: 30
-                              days:
-                                - 0
-                                - 1
-                                - 2
-                                - 3
-                                - 4
-                                - 5
-                        deviceClass: ParkingZone
-                        zoneID: li-6
-                        ticketID: automat-6
-                      - devID: PRD.PRK.LOK-OUT-A
-                        deviceName: Atrium Palace
-                        position:
-                          lat: 50.037830815029565
-                          lng: 15.768293735909339
-                        data:
-                          free: 463
-                          total: 651
-                          unknown: 0
-                          occupied: 188
-                          reserved: 0
-                          reservedFree: 0
-                          reservedUnknown: 0
-                          reservedOccupied: 0
-                        config:
-                          areaID: 4
-                          cityID: CZE555134
-                          zoneID: 1
-                          isPublic: true
-                          photo_url: ''
-                          locationID: 2
-                          zoneNumber: ATR
-                          showViolation: false
-                          maxParkingTime: ''
-                          street_view_url: ''
-                        deviceClass: ParkingZone
-                      - devID: PRD.PRK.LOK-LII-49
-                        deviceName: Bratranců Veverkových II.
-                        position:
-                          lat: 50.03386754545456
-                          lng: 15.772212545454543
-                        data:
-                          free: 6
-                          paid: 3
-                          total: 22
-                          unknown: 0
-                          occupied: 16
-                          reserved: 0
-                          reservedFree: 0
-                          reservedUnknown: 0
-                          reservedOccupied: 0
-                        config:
-                          areaID: 1
-                          cityID: CZE555134
-                          zoneID: 47
-                          isPublic: true
-                          photo_url: ''
-                          locationID: 31
-                          zoneNumber: LII/49
-                          street_view_url: ''
-                          priceList:
-                            - header:
-                                - id: day
-                                  label: Den
-                                - id: time
-                                  label: Čas
-                                - id: minPrice
-                                  label: Minimální cena
-                                - id: firstPeriod
-                                  label: První hodina
-                                - id: nextPeriod
-                                  label: Další hodina
-                              data:
-                                - day: po - pá
-                                  time: '06:00 - 22:00'
-                                  minPrice: 15
-                                  firstPeriod: 30
-                                  nextPeriod: 40
-                                - day: so
-                                  time: '07:00 - 12:00'
-                                  minPrice: 15
-                                  firstPeriod: 30
-                                  nextPeriod: 40
-                              freeTime: 5
-                              divisibility: 30
-                              days:
-                                - 0
-                                - 1
-                                - 2
-                                - 3
-                                - 4
-                                - 5
-                        deviceClass: ParkingZone
-                        zoneID: lii
-                        ticketID: automat-8
-                      - devID: PRD.PRK.LOK-LI-4-4
-                        deviceName: nábř. Václava Havla II.
-                        position:
-                          lat: 50.0420857644624
-                          lng: 15.7707667350769
-                        data:
-                          free: 51
-                          paid: 2
-                          total: 55
-                          unknown: 0
-                          occupied: 4
-                          reserved: 0
-                          reservedFree: 0
-                          reservedUnknown: 0
-                          reservedOccupied: 0
-                        config:
-                          areaID: 1
-                          cityID: CZE555134
-                          zoneID: 4
-                          isPublic: true
-                          photo_url: ''
-                          locationID: 22
-                          zoneNumber: LI/4/4
-                          showViolation: true
-                          maxParkingTime: ''
-                          street_view_url: ''
-                          priceList:
-                            - header:
-                                - id: day
-                                  label: Den
-                                - id: time
-                                  label: Čas
-                                - id: minPrice
-                                  label: Minimální cena
-                                - id: firstPeriod
-                                  label: První hodina
-                              data:
-                                - day: po - pá
-                                  time: '07:00 - 19:00'
-                                  minPrice: 5
-                                  firstPeriod: 10
-                                - day: so
-                                  time: '07:00 - 12:00'
-                                  minPrice: 5
-                                  firstPeriod: 10
-                              freeTime: 5
-                              divisibility: 30
-                              days:
-                                - 0
-                                - 1
-                                - 2
-                                - 3
-                                - 4
-                                - 5
-                        deviceClass: ParkingZone
-                        zoneID: li-4
-                        ticketID: automat-4
       operationId: get-api-app-mob-parking-zones
       description: Vrací seznam parkovacích zón pro mobilní aplikaci parkování
       parameters:
@@ -541,11 +220,6 @@ paths:
           in: header
           name: Content-Type
           required: true
-        - schema:
-            type: string
-          in: query
-          name: cityID
-          description: id měst oddělených čárkou
         - schema:
             type: string
           in: query
@@ -573,6 +247,370 @@ paths:
           description: seznam motorizací oddělených čárkou
       security:
         - Bearer token: []
+  /api/app/mob/mob/parking/address:
+    get:
+      summary: GetMobParkingAddress
+      tags:
+        - parking
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResult'
+              examples:
+                OK:
+                  value:
+                    status: ok
+                    err_msg: ''
+                    err_code: 0
+                    data:
+                      parkings:
+                        - name: Karlovina
+                          id: PRD.PRK.LOK-OUT-K
+                          position:
+                            lat: 50.03618385337515
+                            lng: 15.77908694989694
+                          desc: ''
+                        - name: Vnitroblok Karlovina
+                          id: PRD.PRK.LOK-LIII-89
+                          position:
+                            lat: 50.03572458461538
+                            lng: 15.778322415384617
+                          desc: ''
+                      addresses:
+                        - name: Karla IV. 13
+                          id: '7691041'
+                          position:
+                            lat: 50.03738192741215
+                            lng: 15.779751139075094
+                          desc: 'Zelené Předměstí, Pardubice'
+                        - name: Karla IV. 2590
+                          id: '7714564'
+                          position:
+                            lat: 50.036088072466
+                            lng: 15.778411065807171
+                          desc: 'Zelené Předměstí, Pardubice'
+                        - name: Karla IV. 2591
+                          id: '7714572'
+                          position:
+                            lat: 50.03579865236025
+                            lng: 15.779434073152029
+                          desc: 'Zelené Předměstí, Pardubice'
+                        - name: Karla IV. 2592
+                          id: '7714581'
+                          position:
+                            lat: 50.03506689422654
+                            lng: 15.779289487171715
+                          desc: 'Zelené Předměstí, Pardubice'
+                        - name: Karla IV. 2594
+                          id: '7714602'
+                          position:
+                            lat: 50.03443276326449
+                            lng: 15.77873955163683
+                          desc: 'Zelené Předměstí, Pardubice'
+                        - name: Karla IV. 2629
+                          id: '7714947'
+                          position:
+                            lat: 50.03666571316584
+                            lng: 15.779254744110782
+                          desc: 'Zelené Předměstí, Pardubice'
+                        - name: Karla IV. 2749
+                          id: '25714651'
+                          position:
+                            lat: 50.03618119151261
+                            lng: 15.779071844737066
+                          desc: 'Zelené Předměstí, Pardubice'
+                        - name: Karla IV. 41
+                          id: '7691131'
+                          position:
+                            lat: 50.03469313113381
+                            lng: 15.779973544984777
+                          desc: 'Zelené Předměstí, Pardubice'
+                        - name: Karla IV. 42
+                          id: '7691149'
+                          position:
+                            lat: 50.036368636109735
+                            lng: 15.77997411545151
+                          desc: 'Zelené Předměstí, Pardubice'
+                        - name: Karla IV. 43
+                          id: '7691157'
+                          position:
+                            lat: 50.03624618877468
+                            lng: 15.780022082981327
+                          desc: 'Zelené Předměstí, Pardubice'
+      operationId: get-api-app-mob-parking-address
+      description: API dohledává adresy a parkoviste podle name
+      parameters:
+        - schema:
+            type: string
+            default: application/json
+          in: header
+          name: Content-Type
+          required: true
+        - schema:
+            type: string
+            minLength: 3
+          in: query
+          name: name
+          description: název pro dohledávání
+          required: true
+        - schema:
+            type: integer
+          in: query
+          name: limit
+          description: max počet adres
+      security:
+        - Bearer token: []
+    parameters: []
+  /api/app/mob/parking/config:
+    get:
+      summary: GetParkingAnonymousConfig
+      tags:
+        - parking
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResult'
+              examples:
+                OK:
+                  value:
+                    status: ok
+                    err_msg: ''
+                    err_code: 0
+                    data:
+                      placeTypes:
+                        - itemID: common
+                          name: Běžné
+                          icon: 'https://parking.masterit.cz/Content/images/ico-parking-24.png'
+                        - itemID: taxi
+                          name: Pro taxi
+                          icon: null
+                        - itemID: supply
+                          name: Pro zásobování
+                          icon: null
+                        - itemID: disabled
+                          name: Pro zdravotně postižené
+                          icon: null
+                        - itemID: special
+                          name: Speciální
+                          icon: null
+                        - itemID: prohibited
+                          name: Zákaz stání
+                          icon: null
+                      tickets:
+                        - transactionID: id transakce
+                          licensePlate: SPZ
+                          price: 225
+                          validFrom: '2022-02-08T10:51:18'
+                          validTo: '2022-02-08T16:51:18'
+                          zoneID: li-1-1
+                          zoneName: Pernštýnské náměstí
+                          created: '2022-02-08T10:50:18'
+                        - transactionID: id transakce
+                          licensePlate: SPZ
+                          price: 225
+                          validFrom: '2022-02-08T10:51:18'
+                          validTo: '2022-02-08T16:51:18'
+                          zoneID: li-1-1
+                          zoneName: Pernštýnské náměstí
+                          created: '2022-02-08T10:50:18'
+      operationId: get-api-app-mob-parking-config
+      description: API vrací inicializační data pro aplikaci Pardubice Parking
+      parameters:
+        - schema:
+            type: string
+            default: application/json
+          in: header
+          name: Content-Type
+          required: true
+        - schema:
+            type: string
+            default: cs
+          in: query
+          name: locale
+          description: jazyk
+      security:
+        - Bearer token: []
+    parameters: []
+  /api/app/mob/parking/prices:
+    get:
+      summary: GetMobParkingPrices
+      tags:
+        - parking
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResult'
+              examples:
+                OK:
+                  value:
+                    status: ok
+                    err_msg: ''
+                    err_code: 0
+                    data:
+                      priceList:
+                        - header:
+                            - id: day
+                              label: Den
+                            - id: time
+                              label: Čas
+                            - id: minPrice
+                              label: Minimální cena
+                            - id: firstPeriod
+                              label: První hodina
+                          data:
+                            - day: po - ne a sv.
+                              time: '07:00 - 20:00'
+                              minPrice: 25
+                              firstPeriod: 50
+                          freeTime: 5
+                          divisibility: 30
+                          days:
+                            - 0
+                            - 1
+                            - 2
+                            - 3
+                            - 4
+                            - 5
+                            - 6
+                      zoneID: li-1-1
+                      zoneName: Pernštýnské nám.
+                      ticketID: automat-1
+                      tickets:
+                        - timeSpanMinutes: 30
+                          price: 25
+                        - timeSpanMinutes: 60
+                          price: 50
+                        - timeSpanMinutes: 90
+                          price: 75
+                        - timeSpanMinutes: 120
+                          price: 100
+                        - timeSpanMinutes: 150
+                          price: 125
+                        - timeSpanMinutes: 180
+                          price: 150
+                        - timeSpanMinutes: 210
+                          price: 175
+                        - timeSpanMinutes: 240
+                          price: 200
+                        - timeSpanMinutes: 270
+                          price: 225
+                        - timeSpanMinutes: 1050
+                          price: 250
+                        - timeSpanMinutes: 1110
+                          price: 300
+                        - timeSpanMinutes: 1170
+                          price: 350
+                        - timeSpanMinutes: 1230
+                          price: 400
+                        - timeSpanMinutes: 1290
+                          price: 450
+                        - timeSpanMinutes: 1350
+                          price: 500
+                        - timeSpanMinutes: 1410
+                          price: 550
+                        - timeSpanMinutes: 1470
+                          price: 600
+                        - timeSpanMinutes: 1530
+                          price: 650
+                      zoneSysID: LI/1
+      operationId: get-api-app-mob-parking-prices
+      description: API vrací ceník a seznam lístku pro dané parkoviště podle zoneID
+      parameters:
+        - schema:
+            type: string
+            default: application/json
+          in: header
+          name: Content-Type
+          required: true
+        - schema:
+            type: string
+            default: cs
+          in: query
+          name: locale
+          description: jazyk
+        - schema:
+            type: string
+          in: query
+          name: zoneID
+          required: true
+          description: ID zóny
+      security:
+        - Bearer token: []
+    parameters: []
+  /api/app/mob/parking/payment/finished:
+    get:
+      summary: GetParkingPaymentFinished
+      tags:
+        - parking
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResult'
+              examples:
+                OK:
+                  value:
+                    status: ok
+                    err_msg: ''
+                    err_code: 0
+                    data:
+                      transactionID: id transakce
+                      licensePlate: SPZ
+                      price: 175
+                      validFrom: '2022-02-08T10:51:18'
+                      validTo: '2022-02-08T14:21:18'
+                      zoneID: li-1-1
+                      zoneName: Pernštýnské náměstí
+                      created: '2022-02-08T10:50:18'
+                      isFinished: true
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResult'
+              examples:
+                Platba nebyla potvrzena bankou:
+                  value:
+                    status: error
+                    err_msg: Platba nebyla potvrzena bankou
+                    err_code: -17
+                    data: null
+                Platba byla zamítnuta:
+                  value:
+                    status: error
+                    err_msg: Platba byla zamítnuta
+                    err_code: -18
+                    data: null
+      operationId: get-api-app-mob-parking-payment-finished
+      description: 'API vrací informaci zda již byl dokončen nákup, mělo by být voláno ihned po dokončení platby, pokud API parking/payment vrátí isFinished == false, API periodicky kontroluje async odpověď z banky max po dobu 2 minut, pokud do te doby příjde vrací parkovací lístek'
+      parameters:
+        - schema:
+            type: string
+            default: application/json
+          in: header
+          name: Content-Type
+          required: true
+        - schema:
+            type: string
+            default: cs
+          in: query
+          name: locale
+          description: jazyk
+      security:
+        - Bearer token: []
+    parameters: []
   /api/anonymousLogin:
     post:
       summary: PostAnonymousLogin
@@ -638,6 +676,93 @@ paths:
                   refreshToken: a437f6e7-d643-4aa2-b87e-8f1a384773374254d7b2-a08d-4ff7-9391-4c59d945e734f47f34d7-61a1-4417-b383-374b45999fd64884c5aa-eb00-414e-a55b-54243f66e21d
         description: ''
     parameters: []
+  /api/app/mob/parking/payment:
+    post:
+      summary: PostMobParkingPayment
+      operationId: post-api-app-mob-parking-payment
+      responses:
+        '200':
+          description: |-
+            url - url adresa kam appka přesměruje uživatele
+            method - http metoda pro url
+            isFinished - příznak jestli byl nákup kompletně dokončen
+
+
+            Nákup oneClickem vrací rovnou parkovací lístek
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                OK - obyčejný nákup:
+                  value:
+                    status: ok
+                    err_msg: ''
+                    err_code: 0
+                    data:
+                      url: url pro přesměrování na platbu
+                      method: GET
+                      isFinished: false
+                OK - nákup oneClickem:
+                  value:
+                    status: ok
+                    err_msg: ''
+                    err_code: 0
+                    data:
+                      transactionID: id transakce
+                      licensePlate: SPZ
+                      price: 175
+                      validFrom: '2022-02-08T10:51:18'
+                      validTo: '2022-02-08T14:21:18'
+                      zoneID: li-1-1
+                      zoneName: Pernštýnské náměstí
+                      created: '2022-02-08T10:50:18'
+                      isFinished: true
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResult'
+              examples:
+                Chybné vstupní paramery:
+                  value:
+                    status: error
+                    err_msg: Chybné vstupní paramery
+                    err_code: -2000
+                    data: null
+      description: API provede zakoupení parkovacího lístku
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Content-Type
+          description: application/json
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+            examples:
+              Nákup:
+                value:
+                  zoneID: li-1-1
+                  email: michal.smolka@masterit.cz
+                  licensePlate: 1tx2720
+                  price: 175
+                  timeMinutes: 210
+                  oneClick: true
+                  storeCard: true
+        description: |-
+          zoneID - ID zóny, získané z API parking/zones
+          email - email uživatel, pro případnou reklamaci
+          licensePlate - SPZ vozidla
+          price - cena lístku
+          timeMinutes - čas pro který kupuje uživatel lístek v minutách
+          oneClick - uživatel má zapamatovanou kartu a provádí nákup oneClickem 
+          storeCard - uživatel chce uložit platební kartu pro oneClick
+    parameters: []
   /api/app/mob/parking/place/list:
     get:
       summary: GetMobParkingPlacesAuth
@@ -657,301 +782,60 @@ paths:
                     err_msg: ''
                     err_code: 0
                     data:
-                      - devID: PRD.PRK.PLACE000221
-                        deviceName: U stadionu 66
+                      - sccID: 1
+                        devID: MSK.PRK.PLACE138
+                        type: OfflineDevice
+                        deviceName: 'Krajský úřad, Ostrava Zóna I, místo 12'
                         config:
                           map:
                             position:
-                              lat: 50.04022755
-                              lng: 15.77224464
+                              lat: 49.8282862904364
+                              lng: 18.2705050706863
                             visibility:
-                              min: 19
+                              min: 18
                               max: null
                         configParking:
                           areaID: 1
-                          cityID: CZE555134
-                          zoneID: 6
-                          placeType: special
-                          engineType: ''
-                          locationID: 23
-                          vehicleType: ''
-                          parkingLotID: LI/5/6
-                          maxParkingTime: ''
-                          parkingPlaceID: SPOT-8517
-                          defaultPlaceType: common
-                          parkingPlaceType: AND
-                          temporaryPlaceType:
-                            typeTime:
-                              - state: 1
-                                times:
-                                  to: '17:00'
-                                  from: '08:00'
-                                rowNumber: 1
-                              - state: 1
-                                times:
-                                  to: '14:00'
-                                  from: '08:00'
-                                rowNumber: 2
-                              - state: 1
-                                times:
-                                  to: '17:00'
-                                  from: '08:00'
-                                rowNumber: 3
-                              - state: 1
-                                times:
-                                  to: '14:00'
-                                  from: '08:00'
-                                rowNumber: 4
-                            placeType: special
-                        data:
-                          state: 1
-                          eventID: PRD.PRK.PLACE000221-1643879301609
-                          timestamp: '2022-02-03T10:08:21'
-                          isViolated: 0
-                          licensePlate: null
-                          violationType: null
-                        class: ParkingPlace
-                      - devID: PRD.PRK.PLACE002253
-                        deviceName: U Husova sboru 35
-                        config:
-                          map:
-                            position:
-                              lat: 50.034293
-                              lng: 15.78035
-                            visibility:
-                              min: 19
-                              max: null
-                        configParking:
-                          areaID: 2
-                          cityID: CZE555134
-                          zoneID: 72
-                          placeType: common
-                          engineType: ''
-                          locationID: 6
-                          vehicleType: ''
-                          parkingLotID: LIII/74
-                          parkingPlaceID: SPOT-11158
-                          defaultPlaceType: common
+                          cityID: 554821
+                          zoneID: 5
+                          placeType: '0'
+                          locationID: 2
+                          parkingLotID: cz-ostparkingam-parki
+                          parkingPlaceID: cz-ostparkingam-parki-p13
                           parkingPlaceType: AND
                         data:
                           state: 1
-                          eventID: PRD.PRK.PLACE002253-1643879311793
-                          timestamp: '2022-02-03T10:08:31'
-                          isViolated: 0
-                          licensePlate: null
-                          violationType: null
+                          placeType: '0'
+                          timestamp: '2020-05-07T07:44:52'
                         class: ParkingPlace
-                      - devID: PRD.PRK.PLACE001908
-                        deviceName: Arnošta I. 42
+                      - sccID: 1
+                        devID: MSK.PRK.PLACE062
+                        type: OfflineDevice
+                        deviceName: 'Krajský úřad, Ostrava Zóna B, místo 25'
                         config:
                           map:
                             position:
-                              lat: 50.03379258
-                              lng: 15.77910629
+                              lat: 49.8293707067123
+                              lng: 18.2698747515678
                             visibility:
-                              min: 19
-                              max: null
-                        configParking:
-                          areaID: 2
-                          cityID: CZE555134
-                          zoneID: 64
-                          placeType: common
-                          engineType: ''
-                          locationID: 1
-                          vehicleType: ''
-                          parkingLotID: LIII/66
-                          parkingPlaceID: SPOT-11303
-                          defaultPlaceType: common
-                          parkingPlaceType: AND
-                        data:
-                          state: 1
-                          eventID: PRD.PRK.PLACE001908-1643879301607
-                          timestamp: '2022-02-03T10:08:21'
-                          isViolated: 0
-                          licensePlate: null
-                          violationType: null
-                        class: ParkingPlace
-                      - devID: PRD.PRK.PLACE000706
-                        deviceName: Nerudova 39
-                        config:
-                          map:
-                            position:
-                              lat: 50.03394458
-                              lng: 15.76410068
-                            visibility:
-                              min: 19
-                              max: null
-                        configParking:
-                          areaID: 3
-                          cityID: CZE555134
-                          zoneID: 16
-                          placeType: common
-                          engineType: ''
-                          locationID: 40
-                          vehicleType: ''
-                          parkingLotID: LIV/18
-                          parkingPlaceID: SPOT-8441
-                          defaultPlaceType: common
-                          parkingPlaceType: AND
-                        data:
-                          state: 1
-                          eventID: PRD.PRK.PLACE000706-1643879311796
-                          timestamp: '2022-02-03T10:08:31'
-                          isViolated: 0
-                          licensePlate: null
-                          violationType: null
-                        class: ParkingPlace
-                      - devID: PRD.PRK.PLACE000979
-                        deviceName: K Polabinám I. 29
-                        config:
-                          map:
-                            position:
-                              lat: 50.03761197
-                              lng: 15.766771
-                            visibility:
-                              min: 19
-                              max: null
-                        configParking:
-                          areaID: 3
-                          cityID: CZE555134
-                          zoneID: 24
-                          placeType: disabled
-                          engineType: ''
-                          locationID: 36
-                          vehicleType: ''
-                          parkingLotID: LIV/26
-                          maxParkingTime: ''
-                          parkingPlaceID: SPOT-8071
-                          defaultPlaceType: disabled
-                          parkingPlaceType: AND
-                        data:
-                          state: 1
-                          eventID: PRD.PRK.PLACE000979-1643879301600
-                          timestamp: '2022-02-03T10:08:21'
-                          isViolated: 0
-                          licensePlate: null
-                          violationType: null
-                        class: ParkingPlace
-                      - devID: PRD.PRK.PLACE002299
-                        deviceName: U Husova sboru 81
-                        config:
-                          map:
-                            position:
-                              lat: 50.03443183
-                              lng: 15.780891
-                            visibility:
-                              min: 19
-                              max: null
-                        configParking:
-                          areaID: 2
-                          cityID: CZE555134
-                          zoneID: 72
-                          placeType: common
-                          engineType: ''
-                          locationID: 6
-                          vehicleType: ''
-                          parkingLotID: LIII/74
-                          parkingPlaceID: SPOT-8221
-                          defaultPlaceType: common
-                          parkingPlaceType: AND
-                        data:
-                          state: 0
-                          eventID: PRD.PRK.PLACE002299-1643879301605
-                          timestamp: '2022-02-03T10:08:21'
-                          isViolated: 0
-                          violationType: null
-                          licensePlate: null
-                        class: ParkingPlace
-                      - devID: PRD.PRK.PLACE000017
-                        deviceName: Pernštýnské náměstí 18
-                        config:
-                          map:
-                            position:
-                              lat: 50.03873544
-                              lng: 15.77985814
-                            visibility:
-                              min: 19
+                              min: 18
                               max: null
                         configParking:
                           areaID: 1
-                          cityID: CZE555134
+                          cityID: 554821
                           zoneID: 1
-                          placeType: common
-                          engineType: ''
-                          locationID: 20
-                          vehicleType: ''
-                          parkingLotID: LI/1/1
-                          parkingPlaceID: SPOT-8591
-                          defaultPlaceType: common
+                          placeType: '0'
+                          locationID: 2
+                          parkingLotID: cz-ostparkingam-parkb
+                          parkingPlaceID: cz-ostparkingam-parkb-p25
                           parkingPlaceType: AND
                         data:
                           state: 1
-                          eventID: PRD.PRK.PLACE000017-1643879301602
-                          timestamp: '2022-02-03T10:08:21'
-                          isViolated: 0
-                          licensePlate: null
-                          violationType: null
+                          placeType: '0'
+                          timestamp: '2020-05-07T06:16:01'
                         class: ParkingPlace
-                      - devID: PRD.PRK.PLACE000050
-                        deviceName: Grand 13
-                        config:
-                          map:
-                            position:
-                              lat: 50.038176
-                              lng: 15.776827
-                            visibility:
-                              min: 19
-                              max: null
-                        configParking:
-                          areaID: 1
-                          cityID: CZE555134
-                          zoneID: 2
-                          placeType: common
-                          engineType: ''
-                          locationID: 21
-                          vehicleType: ''
-                          parkingLotID: LI/3/2
-                          parkingPlaceID: SPOT-8980
-                          defaultPlaceType: common
-                          parkingPlaceType: AND
-                        data:
-                          state: 0
-                          eventID: PRD.PRK.PLACE000050-1643879301606
-                          timestamp: '2022-02-03T10:08:21'
-                          isViolated: 0
-                          licensePlate: null
-                          violationType: null
-                        class: ParkingPlace
-                      - devID: PRD.PRK.PLACE002849
-                        deviceName: Vnitroblok Karlovina 8
-                        config:
-                          map:
-                            position:
-                              lat: 50.035843
-                              lng: 15.778537
-                            visibility:
-                              min: 19
-                              max: null
-                        configParking:
-                          areaID: 1
-                          cityID: CZE555134
-                          zoneID: 87
-                          placeType: common
-                          engineType: ''
-                          locationID: 28
-                          vehicleType: ''
-                          parkingLotID: LIII/89
-                          parkingPlaceID: SPOT-8996
-                          defaultPlaceType: common
-                          parkingPlaceType: AND
-                        data:
-                          state: 0
-                          eventID: PRD.PRK.PLACE002849-1643879311794
-                          timestamp: '2022-02-03T10:08:31'
-                          isViolated: 0
-                          licensePlate: null
-                          violationType: null
-                        class: ParkingPlace
+                      - {}
+                      - {}
       operationId: get-api-app-mob-parking-places
       description: Vrací seznam parkovacích míst města podle cityID
       parameters:
@@ -964,7 +848,7 @@ paths:
         - schema:
             type: string
           in: query
-          name: cityID
+          name: zoneID
           description: id měst oddělených čárkou
         - schema:
             type: string
@@ -986,223 +870,6 @@ paths:
           in: query
           name: engineTypes
           description: seznam motorizací oddělených čárkou
-      security:
-        - Bearer token: []
-    parameters: []
-  /api/app/mob/parking/config:
-    get:
-      summary: GetParkingAnonymousConfig
-      tags:
-        - parking
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIResult'
-              examples:
-                OK:
-                  value:
-                    status: ok
-                    err_msg: ''
-                    err_code: 0
-                    data:
-                      placeTypes:
-                        - itemID: common
-                          name: Běžné
-                          icon: 'https://parking.masterit.cz/Content/images/ico-parking-24.png'
-                        - itemID: taxi
-                          name: Pro taxi
-                          icon: null
-                        - itemID: supply
-                          name: Pro zásobování
-                          icon: null
-                        - itemID: disabled
-                          name: Pro zdravotně postižené
-                          icon: null
-                        - itemID: special
-                          name: Speciální
-                          icon: null
-                        - itemID: prohibited
-                          name: Zákaz stání
-                          icon: null
-                      tickets: []
-        '':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIResult'
-              examples:
-                OK:
-                  value:
-                    status: ok
-                    err_msg: ''
-                    err_code: 0
-                    data:
-                      placeTypes:
-                        - itemID: common
-                          name: Běžné
-                          icon: 'https://parking.masterit.cz/Content/images/ico-parking-24.png'
-                        - itemID: taxi
-                          name: Pro taxi
-                          icon: null
-                        - itemID: supply
-                          name: Pro zásobování
-                          icon: null
-                        - itemID: disabled
-                          name: Pro zdravotně postižené
-                          icon: null
-                        - itemID: special
-                          name: Speciální
-                          icon: null
-                        - itemID: prohibited
-                          name: Zákaz stání
-                          icon: null
-      operationId: get-api-app-mob-parking-config
-      description: Vrací inicializační statická data pro mobilní aplikaci
-      parameters:
-        - schema:
-            type: string
-            default: application/json
-          in: header
-          name: Content-Type
-          required: true
-      security:
-        - Bearer token: []
-    parameters: []
-  /api/app/mob/parking/address:
-    get:
-      summary: GetMobParkingAddress
-      tags:
-        - parking
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIResult'
-              examples:
-                OK:
-                  value:
-                    status: ok
-                    err_msg: ''
-                    err_code: 0
-                    data:
-                      parkings:
-                        - name: Karlovina
-                          id: PRD.PRK.LOK-OUT-K
-                          position:
-                            lat: 50.03618385337515
-                            lng: 15.77908694989694
-                        - name: Vnitroblok Karlovina
-                          id: PRD.PRK.LOK-LIII-89
-                          position:
-                            lat: 50.03572458461538
-                            lng: 15.778322415384617
-                      addresses:
-                        - name: Karla IV. 13
-                          id: '7691041'
-                          position:
-                            lat: 50.03738192741215
-                            lng: 15.779751139075094
-                        - name: Karla IV. 2590
-                          id: '7714564'
-                          position:
-                            lat: 50.036088072466
-                            lng: 15.778411065807171
-                        - name: Karla IV. 2591
-                          id: '7714572'
-                          position:
-                            lat: 50.03579865236025
-                            lng: 15.779434073152029
-                        - name: Karla IV. 2592
-                          id: '7714581'
-                          position:
-                            lat: 50.03506689422654
-                            lng: 15.779289487171715
-                        - name: Karla IV. 2594
-                          id: '7714602'
-                          position:
-                            lat: 50.03443276326449
-                            lng: 15.77873955163683
-        '':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIResult'
-              examples:
-                OK:
-                  value:
-                    status: ok
-                    err_msg: ''
-                    err_code: 0
-                    data:
-                      parkings:
-                        - name: Karlovina
-                          id: PRD.PRK.LOK-OUT-K
-                          position:
-                            lat: 50.03618385337515
-                            lng: 15.77908694989694
-                          desc: ''
-                        - name: Vnitroblok Karlovina
-                          id: PRD.PRK.LOK-LIII-89
-                          position:
-                            lat: 50.03572458461538
-                            lng: 15.778322415384617
-                          desc: ''
-                      addresses:
-                        - name: Karla IV. 13
-                          id: '7691041'
-                          position:
-                            lat: 50.03738192741215
-                            lng: 15.779751139075094
-                          desc: 'Zelené Předměstí, Pardubice'
-                        - name: Karla IV. 2590
-                          id: '7714564'
-                          position:
-                            lat: 50.036088072466
-                            lng: 15.778411065807171
-                          desc: 'Zelené Předměstí, Pardubice'
-                        - name: Karla IV. 2591
-                          id: '7714572'
-                          position:
-                            lat: 50.03579865236025
-                            lng: 15.779434073152029
-                          desc: 'Zelené Předměstí, Pardubice'
-                        - name: Karla IV. 2592
-                          id: '7714581'
-                          position:
-                            lat: 50.03506689422654
-                            lng: 15.779289487171715
-                          desc: 'Zelené Předměstí, Pardubice'
-                        - name: Karla IV. 2594
-                          id: '7714602'
-                          position:
-                            lat: 50.03443276326449
-                            lng: 15.77873955163683
-                          desc: 'Zelené Předměstí, Pardubice'
-      operationId: get-api-app-mob-parking-address
-      description: Dohledává adresy a parkoviště
-      parameters:
-        - schema:
-            type: string
-            default: application/json
-          in: header
-          name: Content-Type
-          required: true
-        - schema:
-            type: string
-            minLength: 3
-          in: query
-          name: name
-          description: hledaný název
-        - schema:
-            type: integer
-          in: query
-          name: limit
-          description: max. počet vrácených adres
       security:
         - Bearer token: []
     parameters: []
