@@ -17,7 +17,15 @@ paths:
         - parking
       responses:
         '200':
-          description: OK
+          description: |-
+            zoneID - ID parkoviste pouzivane pri nakupech a pri volani detailu parkoviste (parking/prices)
+            ticketID - ID ceníku
+            priceList: - ceník
+            header - popisuje hlavičku tabulky
+            data - radky tabulky propojene pres klic s id polozky v header
+            freeTime - cas parkovani zdarma
+            divisibility - delitelnost parkovaci periody (nejkratsi cas pro placene zaparkovani)
+            days - pole dnu (0-po 6-ne) kdy plati cenik
           content:
             application/json:
               schema:
@@ -29,397 +37,180 @@ paths:
                     err_msg: ''
                     err_code: 0
                     data:
-                      - sccID: 1
-                        devID: MSK.PRK.ZONEB
-                        type: GroupingDevice
-                        deviceName: 'Krajský úřad, Ostrava Zóna B'
+                      - devID: PRD.PRK.LOK-LI-1-1
+                        deviceName: Pernštýnské nám.
+                        position:
+                          lat: 50.0387059640663
+                          lng: 15.7796770334244
+                        data:
+                          free: 10
+                          paid: 9
+                          total: 30
+                          unknown: 0
+                          occupied: 20
+                          reserved: 0
+                          reservedFree: 0
+                          reservedUnknown: 0
+                          reservedOccupied: 0
                         config:
-                          map:
-                            area: null
-                            icon: null
-                            shadow: null
-                            divIcon:
-                              iconUrl: Content/images/ico-parking-24.png
-                            tooltip:
-                              text: ''
-                            position:
-                              lat: 49.829419584894815
-                              lng: 18.269817074947326
-                            streetView: null
-                            visibility:
-                              gui: app
-                              max: 17
-                              min: 14
-                        configParking:
                           areaID: 1
-                          cityID: 554821
+                          cityID: CZE555134
                           zoneID: 1
-                          photo_url: 'https://smartcity.masterit.cz/scc/Apps/parking/content/images/parking_ostrava_zona_B.jpg'
-                          attributes:
-                            - name: Otevírací doba
-                              items:
-                                - name: po-ne
-                                  value: nonstop
-                                  icon_id: ''
-                            - name: CENA
-                              items:
-                                - name: po-ne
-                                  value: zdarma
-                                  icon_id: ''
-                            - name: Vybavení
-                              items:
-                                - name: Pouliční osvětlení
-                                  value: ''
-                                  icon_id: ico_16_positive
-                                - name: Místo pro invalidy
-                                  value: '2'
-                                  icon_id: ico_16_dis
-                                - name: Bezpečnostní kamera
-                                  value: ''
-                                  icon_id: ico_16_negative
-                                - name: Oplocení
-                                  value: ''
-                                  icon_id: ico_16_negative
-                                - name: Závora
-                                  value: ''
-                                  icon_id: ico_16_negative
-                                - name: Místo pro elektromobily
-                                  value: ''
-                                  icon_id: ico_16_negative
-                          locationID: 2
-                          street_view_url: 'https://www.google.com/maps/@49.8296512,18.2699846,3a,75y,212.49h,93.45t/data=!3m6!1e1!3m4!1sKeKC7VN4Af2nzZzjvMl-oA!2e0!7i13312!8i6656'
-                        data:
-                          free: 6
-                          total: 48
-                          occupied: 42
-                          unknown: 0
-                        class: ParkingZone
-                      - sccID: 1
-                        devID: MSK.PRK.ZONEA
-                        type: GroupingDevice
-                        deviceName: 'Krajský úřad, Ostrava Zóna A'
-                        config:
-                          map:
-                            area: null
-                            icon: null
-                            shadow: null
-                            divIcon:
-                              iconUrl: Content/images/ico-parking-24.png
-                            tooltip:
-                              text: ''
-                            position:
-                              lat: 49.82986510941439
-                              lng: 18.270459474360987
-                            streetView: null
-                            visibility:
-                              gui: app
-                              max: 17
-                              min: 14
-                        configParking:
-                          areaID: 1
-                          cityID: 554821
-                          zoneID: 9
-                          photo_url: 'https://smartcity.masterit.cz/scc/Apps/parking/content/images/parking_ostrava_zona_A.jpg'
-                          attributes:
-                            - name: Otevírací doba
-                              items:
-                                - name: po-ne
-                                  value: nonstop
-                                  icon_id: ''
-                            - name: CENA
-                              items:
-                                - name: po-ne
-                                  value: zdarma
-                                  icon_id: ''
-                            - name: Vybavení
-                              items:
-                                - name: Pouliční osvětlení
-                                  value: ''
-                                  icon_id: ico_16_positive
-                                - name: Místo pro invalidy
-                                  value: '4'
-                                  icon_id: ico_16_dis
-                                - name: Bezpečnostní kamera
-                                  value: ''
-                                  icon_id: ico_16_negative
-                                - name: Oplocení
-                                  value: ''
-                                  icon_id: ico_16_negative
-                                - name: Závora
-                                  value: ''
-                                  icon_id: ico_16_positive
-                                - name: Místo pro elektromobily
-                                  value: '4'
-                                  icon_id: ico_16_positive
-                          locationID: 2
-                          street_view_url: 'https://www.google.com/maps/@49.8300335,18.2704887,3a,75y,177.78h,88.24t/data=!3m6!1e1!3m4!1sGEJEElcLvKEoftr5HByOrQ!2e0!7i13312!8i6656'
-                        data:
-                          free: 21
-                          total: 37
-                          occupied: 16
-                          unknown: 0
-                        class: ParkingZone
-                      - sccID: 1
-                        devID: MSK.PRK.ZONEC
-                        type: GroupingDevice
-                        deviceName: 'Krajský úřad, Ostrava Zóna C'
-                        config:
-                          map:
-                            area: null
-                            icon: null
-                            shadow: null
-                            divIcon:
-                              iconUrl: Content/images/ico-parking-24.png
-                            tooltip:
-                              text: ''
-                            position:
-                              lat: 49.829038074228976
-                              lng: 18.27085643914635
-                            streetView: null
-                            visibility:
-                              gui: app
-                              max: 17
-                              min: 14
-                        configParking:
-                          areaID: 1
-                          cityID: 554821
-                          zoneID: 2
-                          photo_url: 'https://smartcity.masterit.cz/scc/Apps/parking/content/images/parking_ostrava_zona_C.jpg'
-                          attributes:
-                            - name: Otevírací doba
-                              items:
-                                - name: po-ne
-                                  value: nonstop
-                                  icon_id: ''
-                            - name: CENA
-                              items:
-                                - name: po-ne
-                                  value: zdarma
-                                  icon_id: ''
-                            - name: Vybavení
-                              items:
-                                - name: Pouliční osvětlení
-                                  value: ''
-                                  icon_id: ico_16_positive
-                                - name: Místo pro invalidy
-                                  value: '1'
-                                  icon_id: ico_16_dis
-                                - name: Bezpečnostní kamera
-                                  value: ''
-                                  icon_id: ico_16_negative
-                                - name: Oplocení
-                                  value: ''
-                                  icon_id: ico_16_negative
-                                - name: Závora
-                                  value: ''
-                                  icon_id: ico_16_negative
-                                - name: Místo pro elektromobily
-                                  value: ''
-                                  icon_id: ico_16_negative
-                          locationID: 2
-                          street_view_url: 'https://www.google.com/maps/@49.8291884,18.2708804,3a,60y,171.56h,83.52t/data=!3m6!1e1!3m4!1szG90QrDfr8ANk0bY3Xz-0A!2e0!7i13312!8i6656'
-                        data:
-                          free: 1
-                          total: 25
-                          occupied: 24
-                          unknown: 0
-                        class: ParkingZone
-                      - sccID: 1
-                        devID: MSK.PRK.ZONEI
-                        type: GroupingDevice
-                        deviceName: 'Krajský úřad, Ostrava Zóna I'
-                        config:
-                          map:
-                            area: null
-                            icon: null
-                            shadow: null
-                            divIcon:
-                              iconUrl: Content/images/ico-parking-24.png
-                            tooltip:
-                              text: ''
-                            position:
-                              lat: 49.82848872818833
-                              lng: 18.270444846927163
-                            streetView: null
-                            visibility:
-                              gui: app
-                              max: 17
-                              min: 14
-                        configParking:
-                          areaID: 1
-                          cityID: 554821
-                          zoneID: 5
-                          photo_url: 'https://smartcity.masterit.cz/scc/Apps/parking/content/images/parking_ostrava_zona_I.jpg'
-                          attributes:
-                            - name: Otevírací doba
-                              items:
-                                - name: po-ne
-                                  value: nonstop
-                                  icon_id: ''
-                            - name: CENA
-                              items:
-                                - name: po-ne
-                                  value: zdarma
-                                  icon_id: ''
-                            - name: Vybavení
-                              items:
-                                - name: Pouliční osvětlení
-                                  value: ''
-                                  icon_id: ico_16_positive
-                                - name: Místo pro invalidy
-                                  value: '2'
-                                  icon_id: ico_16_dis
-                                - name: Bezpečnostní kamera
-                                  value: ''
-                                  icon_id: ico_16_negative
-                                - name: Oplocení
-                                  value: ''
-                                  icon_id: ico_16_negative
-                                - name: Závora
-                                  value: ''
-                                  icon_id: ico_16_negative
-                                - name: Místo pro elektromobily
-                                  value: ''
-                                  icon_id: ico_16_negative
-                          locationID: 2
-                          street_view_url: 'https://www.google.com/maps/@49.8281807,18.2706712,3a,75y,333.97h,86.71t/data=!3m6!1e1!3m4!1sRy6Xu4JslQ1Pi60pgoNGIA!2e0!7i13312!8i6656'
-                        data:
-                          free: 4
-                          total: 18
-                          occupied: 14
-                          unknown: 0
-                        class: ParkingZone
-                      - sccID: 1
-                        devID: MSK.PRK.ZONEK
-                        type: GroupingDevice
-                        deviceName: 'Krajský úřad, Ostrava Zóna K'
-                        config:
-                          map:
-                            area: null
-                            icon: null
-                            shadow: null
-                            divIcon:
-                              iconUrl: Content/images/ico-parking-24.png
-                            tooltip:
-                              text: ''
-                            position:
-                              lat: 49.82826293217972
-                              lng: 18.271124660354836
-                            streetView: null
-                            visibility:
-                              gui: app
-                              max: 17
-                              min: 14
-                        configParking:
-                          areaID: 1
-                          cityID: 554821
-                          zoneID: 6
-                          photo_url: 'https://smartcity.masterit.cz/scc/Apps/parking/content/images/parking_ostrava_zona_K.jpg'
-                          attributes:
-                            - name: Otevírací doba
-                              items:
-                                - name: po-ne
-                                  value: nonstop
-                                  icon_id: ''
-                            - name: CENA
-                              items:
-                                - name: po-ne
-                                  value: zdarma
-                                  icon_id: ''
-                            - name: Vybavení
-                              items:
-                                - name: Pouliční osvětlení
-                                  value: ''
-                                  icon_id: ico_16_positive
-                                - name: Místo pro invalidy
-                                  value: '2'
-                                  icon_id: ico_16_dis
-                                - name: Bezpečnostní kamera
-                                  value: ''
-                                  icon_id: ico_16_negative
-                                - name: Oplocení
-                                  value: ''
-                                  icon_id: ico_16_negative
-                                - name: Závora
-                                  value: ''
-                                  icon_id: ico_16_negative
-                                - name: Místo pro elektromobily
-                                  value: ''
-                                  icon_id: ico_16_negative
-                          locationID: 2
-                          street_view_url: 'https://www.google.com/maps/@49.8283057,18.2710541,3a,75y,211.56h,77.36t/data=!3m6!1e1!3m4!1sIcg9qizCHd6p1PgRPCTxeg!2e0!7i13312!8i6656'
-                        data:
-                          free: 6
-                          total: 23
-                          occupied: 17
-                          unknown: 0
-                        class: ParkingZone
-                      - sccID: 1
-                        devID: MSK.PRK.ZONEL
-                        type: GroupingDevice
-                        deviceName: 'Na Jízdárně 2, Ostrava'
-                        config:
-                          map:
-                            area: null
-                            icon: null
-                            shadow: null
-                            divIcon:
-                              iconUrl: Content/images/ico-parking-24.png
-                            tooltip:
-                              text: ''
-                            position:
-                              lat: 49.82950869012703
-                              lng: 18.272044661116727
-                            streetView: null
-                            visibility:
-                              gui: app
-                              max: 17
-                              min: 14
-                        configParking:
-                          areaID: 1
-                          cityID: 554821
-                          zoneID: 7
                           isPublic: true
-                          photo_url: 'https://smartcity.masterit.cz/scc/Apps/parking/content/images/parking_ostrava_zona_L.jpg'
-                          attributes:
-                            - name: Otevírací doba
-                              items:
-                                - name: po-ne
-                                  value: nonstop
-                                  icon_id: ''
-                            - name: CENA
-                              items:
-                                - name: po-ne
-                                  value: zdarma
-                                  icon_id: ''
-                            - name: Vybavení
-                              items:
-                                - name: Pouliční osvětlení
-                                  value: ''
-                                  icon_id: ico_16_positive
-                                - name: Místo pro invalidy
-                                  value: ''
-                                  icon_id: ico_16_negative
-                                - name: Bezpečnostní kamera
-                                  value: ''
-                                  icon_id: ico_16_negative
-                                - name: Oplocení
-                                  value: ''
-                                  icon_id: ico_16_negative
-                                - name: Závora
-                                  value: ''
-                                  icon_id: ico_16_negative
-                                - name: Místo pro elektromobily
-                                  value: ''
-                                  icon_id: ico_16_negative
-                          locationID: 2
-                          street_view_url: 'https://www.google.com/maps/@49.8296231,18.2718531,3a,75y,184.69h,80.97t/data=!3m6!1e1!3m4!1sytL5umu-APtuqBb1tWFUFA!2e0!7i13312!8i6656'
+                          photo_url: ''
+                          locationID: 20
+                          zoneNumber: LI/1/1
+                          showViolation: true
+                          maxParkingTime: ''
+                          street_view_url: ''
+                          priceList:
+                            - header:
+                                - id: day
+                                  label: Den
+                                - id: time
+                                  label: Čas
+                                - id: minPrice
+                                  label: Minimální cena
+                                - id: firstPeriod
+                                  label: První hodina
+                              data:
+                                - day: po - ne a sv.
+                                  time: '07:00 - 20:00'
+                                  minPrice: 25
+                                  firstPeriod: 50
+                              freeTime: 5
+                              divisibility: 30
+                              days:
+                                - 0
+                                - 1
+                                - 2
+                                - 3
+                                - 4
+                                - 5
+                                - 6
+                        deviceClass: ParkingZone
+                        zoneID: li-1-1
+                        ticketID: automat-1
+                      - devID: PRD.PRK.LOK-LI-7-9
+                        deviceName: U Mlýnů
+                        position:
+                          lat: 50.0418307767515
+                          lng: 15.7813775539398
                         data:
-                          free: 1
-                          total: 24
-                          occupied: 23
+                          free: 24
+                          paid: 15
+                          total: 46
+                          unknown: 1
+                          occupied: 21
+                          reserved: 0
+                          reservedFree: 0
+                          reservedUnknown: 0
+                          reservedOccupied: 0
+                        config:
+                          areaID: 2
+                          cityID: CZE555134
+                          zoneID: 8
+                          isPublic: true
+                          photo_url: ''
+                          locationID: 14
+                          zoneNumber: LI/7/9
+                          showViolation: true
+                          maxParkingTime: ''
+                          street_view_url: ''
+                          priceList:
+                            - header:
+                                - id: day
+                                  label: Den
+                                - id: time
+                                  label: Čas
+                                - id: minPrice
+                                  label: Minimální cena
+                                - id: firstPeriod
+                                  label: První hodina
+                                - id: nextPeriod
+                                  label: Další hodina
+                              data:
+                                - day: po - pá
+                                  time: '07:00 - 18:00'
+                                  minPrice: 10
+                                  firstPeriod: 10
+                                  nextPeriod: 20
+                                - day: so
+                                  time: '07:00 - 12:00'
+                                  minPrice: 10
+                                  firstPeriod: 10
+                                  nextPeriod: 20
+                              freeTime: 5
+                              divisibility: 30
+                              days:
+                                - 0
+                                - 1
+                                - 2
+                                - 3
+                                - 4
+                                - 5
+                        deviceClass: ParkingZone
+                        zoneID: li-7-9
+                        ticketID: automat-7
+                      - devID: PRD.PRK.LOK-LIV-27
+                        deviceName: K Polabinám II.
+                        position:
+                          lat: 50.0370762161796
+                          lng: 15.7662498950958
+                        data:
+                          free: 3
+                          paid: 10
+                          total: 35
                           unknown: 0
-                        class: ParkingZone
+                          occupied: 32
+                          reserved: 0
+                          reservedFree: 0
+                          reservedUnknown: 0
+                          reservedOccupied: 0
+                        config:
+                          areaID: 3
+                          cityID: CZE555134
+                          zoneID: 25
+                          isPublic: true
+                          photo_url: ''
+                          locationID: 36
+                          zoneNumber: LIV/27
+                          street_view_url: ''
+                          priceList:
+                            - header:
+                                - id: day
+                                  label: Den
+                                - id: time
+                                  label: Čas
+                                - id: minPrice
+                                  label: Minimální cena
+                                - id: firstPeriod
+                                  label: První hodina
+                                - id: nextPeriod
+                                  label: Další hodina
+                              data:
+                                - day: po - pá
+                                  time: '06:00 - 22:00'
+                                  minPrice: 10
+                                  firstPeriod: 20
+                                  nextPeriod: 40
+                                - day: so
+                                  time: '07:00 - 12:00'
+                                  minPrice: 10
+                                  firstPeriod: 20
+                                  nextPeriod: 40
+                              freeTime: 5
+                              divisibility: 30
+                              days:
+                                - 0
+                                - 1
+                                - 2
+                                - 3
+                                - 4
+                                - 5
+                        deviceClass: ParkingZone
+                        zoneID: liv
+                        ticketID: automat-10
       operationId: get-api-app-mob-parking-zones
       description: Vrací seznam parkovacích zón pro mobilní aplikaci parkování
       parameters:
@@ -429,11 +220,6 @@ paths:
           in: header
           name: Content-Type
           required: true
-        - schema:
-            type: string
-          in: query
-          name: cityID
-          description: id měst oddělených čárkou
         - schema:
             type: string
           in: query
@@ -461,6 +247,370 @@ paths:
           description: seznam motorizací oddělených čárkou
       security:
         - Bearer token: []
+  /api/app/mob/mob/parking/address:
+    get:
+      summary: GetMobParkingAddress
+      tags:
+        - parking
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResult'
+              examples:
+                OK:
+                  value:
+                    status: ok
+                    err_msg: ''
+                    err_code: 0
+                    data:
+                      parkings:
+                        - name: Karlovina
+                          id: PRD.PRK.LOK-OUT-K
+                          position:
+                            lat: 50.03618385337515
+                            lng: 15.77908694989694
+                          desc: ''
+                        - name: Vnitroblok Karlovina
+                          id: PRD.PRK.LOK-LIII-89
+                          position:
+                            lat: 50.03572458461538
+                            lng: 15.778322415384617
+                          desc: ''
+                      addresses:
+                        - name: Karla IV. 13
+                          id: '7691041'
+                          position:
+                            lat: 50.03738192741215
+                            lng: 15.779751139075094
+                          desc: 'Zelené Předměstí, Pardubice'
+                        - name: Karla IV. 2590
+                          id: '7714564'
+                          position:
+                            lat: 50.036088072466
+                            lng: 15.778411065807171
+                          desc: 'Zelené Předměstí, Pardubice'
+                        - name: Karla IV. 2591
+                          id: '7714572'
+                          position:
+                            lat: 50.03579865236025
+                            lng: 15.779434073152029
+                          desc: 'Zelené Předměstí, Pardubice'
+                        - name: Karla IV. 2592
+                          id: '7714581'
+                          position:
+                            lat: 50.03506689422654
+                            lng: 15.779289487171715
+                          desc: 'Zelené Předměstí, Pardubice'
+                        - name: Karla IV. 2594
+                          id: '7714602'
+                          position:
+                            lat: 50.03443276326449
+                            lng: 15.77873955163683
+                          desc: 'Zelené Předměstí, Pardubice'
+                        - name: Karla IV. 2629
+                          id: '7714947'
+                          position:
+                            lat: 50.03666571316584
+                            lng: 15.779254744110782
+                          desc: 'Zelené Předměstí, Pardubice'
+                        - name: Karla IV. 2749
+                          id: '25714651'
+                          position:
+                            lat: 50.03618119151261
+                            lng: 15.779071844737066
+                          desc: 'Zelené Předměstí, Pardubice'
+                        - name: Karla IV. 41
+                          id: '7691131'
+                          position:
+                            lat: 50.03469313113381
+                            lng: 15.779973544984777
+                          desc: 'Zelené Předměstí, Pardubice'
+                        - name: Karla IV. 42
+                          id: '7691149'
+                          position:
+                            lat: 50.036368636109735
+                            lng: 15.77997411545151
+                          desc: 'Zelené Předměstí, Pardubice'
+                        - name: Karla IV. 43
+                          id: '7691157'
+                          position:
+                            lat: 50.03624618877468
+                            lng: 15.780022082981327
+                          desc: 'Zelené Předměstí, Pardubice'
+      operationId: get-api-app-mob-parking-address
+      description: API dohledává adresy a parkoviste podle name
+      parameters:
+        - schema:
+            type: string
+            default: application/json
+          in: header
+          name: Content-Type
+          required: true
+        - schema:
+            type: string
+            minLength: 3
+          in: query
+          name: name
+          description: název pro dohledávání
+          required: true
+        - schema:
+            type: integer
+          in: query
+          name: limit
+          description: max počet adres
+      security:
+        - Bearer token: []
+    parameters: []
+  /api/app/mob/parking/config:
+    get:
+      summary: GetParkingAnonymousConfig
+      tags:
+        - parking
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResult'
+              examples:
+                OK:
+                  value:
+                    status: ok
+                    err_msg: ''
+                    err_code: 0
+                    data:
+                      placeTypes:
+                        - itemID: common
+                          name: Běžné
+                          icon: 'https://parking.masterit.cz/Content/images/ico-parking-24.png'
+                        - itemID: taxi
+                          name: Pro taxi
+                          icon: null
+                        - itemID: supply
+                          name: Pro zásobování
+                          icon: null
+                        - itemID: disabled
+                          name: Pro zdravotně postižené
+                          icon: null
+                        - itemID: special
+                          name: Speciální
+                          icon: null
+                        - itemID: prohibited
+                          name: Zákaz stání
+                          icon: null
+                      tickets:
+                        - transactionID: id transakce
+                          licensePlate: SPZ
+                          price: 225
+                          validFrom: '2022-02-08T10:51:18'
+                          validTo: '2022-02-08T16:51:18'
+                          zoneID: li-1-1
+                          zoneName: Pernštýnské náměstí
+                          created: '2022-02-08T10:50:18'
+                        - transactionID: id transakce
+                          licensePlate: SPZ
+                          price: 225
+                          validFrom: '2022-02-08T10:51:18'
+                          validTo: '2022-02-08T16:51:18'
+                          zoneID: li-1-1
+                          zoneName: Pernštýnské náměstí
+                          created: '2022-02-08T10:50:18'
+      operationId: get-api-app-mob-parking-config
+      description: API vrací inicializační data pro aplikaci Pardubice Parking
+      parameters:
+        - schema:
+            type: string
+            default: application/json
+          in: header
+          name: Content-Type
+          required: true
+        - schema:
+            type: string
+            default: cs
+          in: query
+          name: locale
+          description: jazyk
+      security:
+        - Bearer token: []
+    parameters: []
+  /api/app/mob/parking/prices:
+    get:
+      summary: GetMobParkingPrices
+      tags:
+        - parking
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResult'
+              examples:
+                OK:
+                  value:
+                    status: ok
+                    err_msg: ''
+                    err_code: 0
+                    data:
+                      priceList:
+                        - header:
+                            - id: day
+                              label: Den
+                            - id: time
+                              label: Čas
+                            - id: minPrice
+                              label: Minimální cena
+                            - id: firstPeriod
+                              label: První hodina
+                          data:
+                            - day: po - ne a sv.
+                              time: '07:00 - 20:00'
+                              minPrice: 25
+                              firstPeriod: 50
+                          freeTime: 5
+                          divisibility: 30
+                          days:
+                            - 0
+                            - 1
+                            - 2
+                            - 3
+                            - 4
+                            - 5
+                            - 6
+                      zoneID: li-1-1
+                      zoneName: Pernštýnské nám.
+                      ticketID: automat-1
+                      tickets:
+                        - timeSpanMinutes: 30
+                          price: 25
+                        - timeSpanMinutes: 60
+                          price: 50
+                        - timeSpanMinutes: 90
+                          price: 75
+                        - timeSpanMinutes: 120
+                          price: 100
+                        - timeSpanMinutes: 150
+                          price: 125
+                        - timeSpanMinutes: 180
+                          price: 150
+                        - timeSpanMinutes: 210
+                          price: 175
+                        - timeSpanMinutes: 240
+                          price: 200
+                        - timeSpanMinutes: 270
+                          price: 225
+                        - timeSpanMinutes: 1050
+                          price: 250
+                        - timeSpanMinutes: 1110
+                          price: 300
+                        - timeSpanMinutes: 1170
+                          price: 350
+                        - timeSpanMinutes: 1230
+                          price: 400
+                        - timeSpanMinutes: 1290
+                          price: 450
+                        - timeSpanMinutes: 1350
+                          price: 500
+                        - timeSpanMinutes: 1410
+                          price: 550
+                        - timeSpanMinutes: 1470
+                          price: 600
+                        - timeSpanMinutes: 1530
+                          price: 650
+                      zoneSysID: LI/1
+      operationId: get-api-app-mob-parking-prices
+      description: API vrací ceník a seznam lístku pro dané parkoviště podle zoneID
+      parameters:
+        - schema:
+            type: string
+            default: application/json
+          in: header
+          name: Content-Type
+          required: true
+        - schema:
+            type: string
+            default: cs
+          in: query
+          name: locale
+          description: jazyk
+        - schema:
+            type: string
+          in: query
+          name: zoneID
+          required: true
+          description: ID zóny
+      security:
+        - Bearer token: []
+    parameters: []
+  /api/app/mob/parking/payment/finished:
+    get:
+      summary: GetParkingPaymentFinished
+      tags:
+        - parking
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResult'
+              examples:
+                OK:
+                  value:
+                    status: ok
+                    err_msg: ''
+                    err_code: 0
+                    data:
+                      transactionID: id transakce
+                      licensePlate: SPZ
+                      price: 175
+                      validFrom: '2022-02-08T10:51:18'
+                      validTo: '2022-02-08T14:21:18'
+                      zoneID: li-1-1
+                      zoneName: Pernštýnské náměstí
+                      created: '2022-02-08T10:50:18'
+                      isFinished: true
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResult'
+              examples:
+                Platba nebyla potvrzena bankou:
+                  value:
+                    status: error
+                    err_msg: Platba nebyla potvrzena bankou
+                    err_code: -17
+                    data: null
+                Platba byla zamítnuta:
+                  value:
+                    status: error
+                    err_msg: Platba byla zamítnuta
+                    err_code: -18
+                    data: null
+      operationId: get-api-app-mob-parking-payment-finished
+      description: 'API vrací informaci zda již byl dokončen nákup, mělo by být voláno ihned po dokončení platby, pokud API parking/payment vrátí isFinished == false, API periodicky kontroluje async odpověď z banky max po dobu 2 minut, pokud do te doby příjde vrací parkovací lístek'
+      parameters:
+        - schema:
+            type: string
+            default: application/json
+          in: header
+          name: Content-Type
+          required: true
+        - schema:
+            type: string
+            default: cs
+          in: query
+          name: locale
+          description: jazyk
+      security:
+        - Bearer token: []
+    parameters: []
   /api/anonymousLogin:
     post:
       summary: PostAnonymousLogin
@@ -525,6 +675,93 @@ paths:
                   application: parking
                   refreshToken: a437f6e7-d643-4aa2-b87e-8f1a384773374254d7b2-a08d-4ff7-9391-4c59d945e734f47f34d7-61a1-4417-b383-374b45999fd64884c5aa-eb00-414e-a55b-54243f66e21d
         description: ''
+    parameters: []
+  /api/app/mob/parking/payment:
+    post:
+      summary: PostMobParkingPayment
+      operationId: post-api-app-mob-parking-payment
+      responses:
+        '200':
+          description: |-
+            url - url adresa kam appka přesměruje uživatele
+            method - http metoda pro url
+            isFinished - příznak jestli byl nákup kompletně dokončen
+
+
+            Nákup oneClickem vrací rovnou parkovací lístek
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                OK - obyčejný nákup:
+                  value:
+                    status: ok
+                    err_msg: ''
+                    err_code: 0
+                    data:
+                      url: url pro přesměrování na platbu
+                      method: GET
+                      isFinished: false
+                OK - nákup oneClickem:
+                  value:
+                    status: ok
+                    err_msg: ''
+                    err_code: 0
+                    data:
+                      transactionID: id transakce
+                      licensePlate: SPZ
+                      price: 175
+                      validFrom: '2022-02-08T10:51:18'
+                      validTo: '2022-02-08T14:21:18'
+                      zoneID: li-1-1
+                      zoneName: Pernštýnské náměstí
+                      created: '2022-02-08T10:50:18'
+                      isFinished: true
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResult'
+              examples:
+                Chybné vstupní paramery:
+                  value:
+                    status: error
+                    err_msg: Chybné vstupní paramery
+                    err_code: -2000
+                    data: null
+      description: API provede zakoupení parkovacího lístku
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Content-Type
+          description: application/json
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+            examples:
+              Nákup:
+                value:
+                  zoneID: li-1-1
+                  email: michal.smolka@masterit.cz
+                  licensePlate: 1tx2720
+                  price: 175
+                  timeMinutes: 210
+                  oneClick: true
+                  storeCard: true
+        description: |-
+          zoneID - ID zóny, získané z API parking/zones
+          email - email uživatel, pro případnou reklamaci
+          licensePlate - SPZ vozidla
+          price - cena lístku
+          timeMinutes - čas pro který kupuje uživatel lístek v minutách
+          oneClick - uživatel má zapamatovanou kartu a provádí nákup oneClickem 
+          storeCard - uživatel chce uložit platební kartu pro oneClick
     parameters: []
   /api/app/mob/parking/place/list:
     get:
@@ -611,7 +848,7 @@ paths:
         - schema:
             type: string
           in: query
-          name: cityID
+          name: zoneID
           description: id měst oddělených čárkou
         - schema:
             type: string
